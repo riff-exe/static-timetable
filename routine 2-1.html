@@ -14,15 +14,15 @@
       --def-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    *{
+    * {
       padding: 0;
       margin: 0;
     }
-    body{
+    body {
       padding: 0px;
       background-color: var(--bg-color);
     }
-    h3{
+    h3 {
       margin-bottom: 10px;
       margin-left: 20px;
       font-family: var(--def-font);
@@ -30,10 +30,10 @@
     }
 
 
-    #main-wrapper{
+    #main-wrapper {
       margin: 20px;
     }
-    .time-table, .time-table td, .time-table th{
+    .time-table, .time-table td, .time-table th {
       border: 3px solid var(--table-border-color);
       border-collapse: collapse;
     }
@@ -50,7 +50,7 @@
       background-size: 20px 20px;
       text-align: center;
     }
-    .time-table td{
+    .time-table td {
       background-color: var(--table-bg-color);
       font-family: var(--def-font);
       font-weight: 600;
@@ -58,13 +58,20 @@
     .time-table td:empty {
       background-color: inherit;
     }
-    .time-table th{
+    .time-table th {
       background-color: var(--table-bg-color);
       font-family: var(--def-font);
     }
-    .time-table tr td, th{
+    .time-table tr td, th {
       padding: 10px;
     }
+
+		.sche-CT {
+			font-weight: bolder !important;
+		}
+		/*
+		.sche-Lab
+		*/
   </style>
 </head>
 <body>
@@ -92,42 +99,44 @@
         <tr>        <!--SATURDAY-->
           <th>SAT</th>
 
-          <td>
+          <td class="sche-CT">
 						CSE 2101<br>
 						CT ODD
 					</td>
           <td>
             CSE 2103<br>
             BA<br>
-            103
+            201
           </td>
           <td>
             CSE 2101<br>
             AYS<br>
-            103
+            201
           </td>
           
           <td rowspan="5">Tiffin<br>Break</td>
           <td>
             HUM 2113<br>
-            X<br>
-            103
+            TK<br>
+            201
           </td>
 					<td>
             Math 2113<br>
             MAH<br>
-            103
+            201
           </td>
 					<td>
             EEE 2151<br>
             SAH/AZR<br>
-            103
+            201
           </td>
           <td rowspan="5">Lunch<br>Break</td>
-          <td colspan="3">
+          <td class="sche-Lab" colspan="3">
             EEE 2152<br>
             SB<br>
-            Machine Lab
+            Machine Lab<br>
+						<i>Odd Week - 2nd 30
+						<br>Even Week - 1st 30</i>
           </td>
           <td rowspan="5">End</td>
         </tr>
@@ -135,7 +144,7 @@
         <tr>        <!--SUNDAY-->
           <th>SUN</th>
 
-					<td>
+					<td class="sche-CT">
 						CSE 2103<br>
 						CT EVEN
 					</td>
@@ -145,10 +154,11 @@
             203
           </td>
   
-          <td colspan="3">
+          <td class="sche-Lab" colspan="3">
             CSE 2104<br>
             BA<br>
-            HW Lab
+            HW Lab<br>
+						<i>2nd 30</i>
           </td>
 
           <td>
@@ -162,38 +172,40 @@
         <tr>        <!--MONDAY-->
           <th>MON</th>
 
-          <td>
+          <td class="sche-CT">
 						EEE 2151<br>
 						CT ODD
 					</td>
           <td>
             EEE 2151<br>
             SAH/AZR<br>
-            104
+            103
           </td>
           <td>
             HUM 2113<br>
             MMP<br>
-            104
+            103
           </td>
   
-          <td colspan="3">
+          <td class="sche-Lab" colspan="3">
             CSE 2102<br>
             AYS<br>
-            ACL Lab
+            ACL Lab<br>
+						<i>2nd 30</i>
           </td>
   
-          <td colspan="3">
+          <td class="sche-Lab" colspan="3">
             CSE 2104<br>
             BA<br>
-            HW Lab
+            HW Lab<br>
+						<i>1st 30</i>
           </td>
         </tr>
 
         <tr>        <!--TUESDAY-->
           <th>TUE</th>
 
-					<td>
+          <td class="sche-CT">
 						Math 2113<br>
 						CT EVEN
 					</td>
@@ -208,10 +220,11 @@
               101
           </td>
 
-          <td colspan="3">
+          <td class="sche-Lab" colspan="3">
             CSE 2102<br>
             AYS<br>
-            ACL Lab
+            ACL Lab<br>
+						<i>1st 30</i>
           </td>
 
           <td colspan="3"></td>
@@ -219,7 +232,7 @@
 
         <tr>        <!--WEDNESDAY-->
           <th>WED</th>
-          <td>
+          <td class="sche-CT">
 						HUM 2113<br>
 						CT ODD
 					</td>
@@ -263,23 +276,23 @@
 
         <tr>        <!--1ST PERIOD-->
           <th>8:00</th>
-          <td>
+          <td class="sche-CT">
 						CSE 2101<br>
 						CT ODD
 					</td>
-          <td>
+          <td class="sche-CT">
 						CSE 2103<br>
 						CT EVEN
 					</td>
-          <td>
+          <td class="sche-CT">
 						EEE 2151<br>
 						CT ODD
 					</td>
-          <td>
+          <td class="sche-CT">
 						Math 2113<br>
 						CT EVEN
 					</td>
-          <td>
+          <td class="sche-CT">
 						HUM 2113<br>
 						CT ODD
 					</td>
@@ -290,7 +303,7 @@
           <td>
             CSE 2103<br>
             BA<br>
-            103
+            201
           </td>
           <td rowspan="2">
             CSE 2103<br>
@@ -300,7 +313,7 @@
 					<td>
             EEE 2151<br>
             SAH/AZR<br>
-            104
+            103
           </td>
 					<td>
               EEE 2151<br>
@@ -315,17 +328,17 @@
           <td>
             CSE 2101<br>
             AYS<br>
-            103
+            201
           </td>
           <td>
             HUM 2113<br>
             MMP<br>
-            104
+            103
           </td>
 					<td>
-              Math 2113<br>
-              MAH<br>
-              101
+						Math 2113<br>
+						MAH<br>
+						101
           </td>
         </tr>
 
@@ -338,23 +351,26 @@
           <th>10:50</th>
           <td>
             HUM 2113<br>
-            X<br>
-            103
+            TK<br>
+            201
           </td>
-          <td rowspan="3">
+          <td class="sche-Lab" rowspan="3">
             CSE 2104<br>
             BA<br>
-            HW Lab
+            HW Lab<br>
+						<i>2nd 30</i>
           </td>
-          <td rowspan="3">
+          <td class="sche-Lab" rowspan="3">
             CSE 2102<br>
             AYS<br>
-            ACL Lab
+            ACL Lab<br>
+						<i>2nd 30</i>
           </td>
-          <td rowspan="3">
+          <td class="sche-Lab" rowspan="3">
             CSE 2102<br>
             AYS<br>
-            ACL Lab
+            ACL Lab<br>
+						<i>1st 30</i>
           </td>
           <td>
             HUM 2113<br>
@@ -368,7 +384,7 @@
           <td>
             Math 2113<br>
             MAH<br>
-            103
+            201
           </td>
           <td>
             Math 2113<br>
@@ -382,7 +398,7 @@
           <td>
             EEE 2151<br>
             SAH/AZR<br>
-            103
+            201
           </td>
           <td>
             CSE 2101<br>
@@ -398,20 +414,23 @@
 
         <tr>        <!--7TH PERIOD-->
           <th>2:30</th>
-          <td rowspan="3">
+          <td class="sche-Lab" rowspan="3">
             EEE 2152<br>
             SB<br>
-            Machine Lab
+            Machine Lab<br>
+						<i>Odd Week - 2nd 30
+						<br>Even Week - 1st 30</i>
           </td>
           <td>
             CSE 2101<br>
             AYS<br>
             102
           </td>
-          <td rowspan="3">
+          <td class="sche-Lab" rowspan="3">
             CSE 2104<br>
             BA<br>
-            HW Lab
+            HW Lab<br>
+						<i>1st 30</i>
           </td>
           <td rowspan="3"></td>
           <td rowspan="3"></td>
