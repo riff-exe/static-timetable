@@ -156,8 +156,7 @@ function addToGrid(grid, entry) {
  */
 function joiner(grid) {
 	grid.forEach(row => {
-		let i = 0;
-		while (i < 3) {
+		for (let i = 0; i < 3; i++) {
 			let j = 0;
 			while (j < 3) {
 				while (row[3*i+j] && j < 3) {
@@ -170,7 +169,6 @@ function joiner(grid) {
 				
 				row[beg] = new TableData(null, 3*i+j - beg);
 			}
-			i++;
 		}
 	});
 	return grid;
@@ -334,6 +332,7 @@ function tablerV(grid, tableElem) {
 
 
 
+
 // ###################
 // MAIN EVENT
 // ###################
@@ -352,5 +351,6 @@ console.log(joiner(mainGrid));      // Create "free periods"
 
 document.addEventListener("DOMContentLoaded", () => {
     // tablerH(mainGrid, document.getElementById("time-table-f"));
-	tablerV(mainGrid, document.getElementById("time-table-f"));
+	tablerH(mainGrid, document.getElementById("time-table-h"));
+	tablerV(mainGrid, document.getElementById("time-table-v"));
 });
