@@ -8,7 +8,7 @@
 class TableConfig {
 	constructor(config) {
 		this.joinLongClasses        = config.joinLongClasses        ?? true;
-		this.joinFreePeriods        = config.joinFreePeriods        ?? true;
+		this.joinFreeSlots          = config.joinFreeSlots          ?? true;
 	}
 }
 TABLE = null;
@@ -42,20 +42,20 @@ class ScheduleEntry {
 		this.day         = entry.day;
 		this.subtext     = entry.subtext    ?? "";
 		this.type        = entry.type       ?? "class";
-		this.type.toLowerCase();
-		this.length     = entry.length      ?? ((this.type === "lab")? 3: 1);
-		this.classes    = entry.classes     ?? [];
-		this.id         = entry.id          ?? null;
-		this.style      = entry.style       ?? "";
-		this.substyle   = entry.substyle    ?? "i";
+		this.style       = entry.style       ?? "";
+		this.substyle    = entry.substyle    ?? "i";
 		this.style.toLowerCase();
 		this.substyle.toLowerCase();
+		this.type.toLowerCase();
+		this.length      = entry.length      ?? ((this.type === "lab")? 3: 1);
+		this.classes     = entry.classes     ?? [];
+		this.id          = entry.id          ?? null;
 	}
 }
 
 class TableData {
 	/**
-	 * If 'entry = null`, the object will represent a "free period". 
+	 * If 'entry = null`, the object will represent a "free slot". 
 	 * Then length will be required.
 	 * @param {ScheduleEntry} entry
 	 * @param {number} length
@@ -87,6 +87,16 @@ class TableData {
 // ###################
 // CURATOR
 // ###################
+
+function convertToClassName(text) {
+	// Example input: Math 2113
+	// Output       : math-2113
+	return text
+		.trim()                         // Remove leading/trailing whitespace
+		.toLowerCase()                  // Convert to lowercase
+		.replace(/[^a-z0-9\s-]/g, '')   // Remove special characters
+		.replace(/\s+/g, '-');          // Replace spaces with a single hyphen ("law-201")
+}
 
 function setStyle(text, style) {
 	switch(style) {
@@ -364,10 +374,13 @@ function tablerV(grid, tableElem) {
 // MAIN EVENT
 // ###################
 
-TABLE = new TableConfig(config_json.config)
+function createEmptyTable() {
+	return Array(5).fill().map(() => Array(9).fill(null));
+}
 
-// Fill Grid will null instances of TableData
-let mainGrid = Array(5).fill().map(() => Array(9).fill(null));
+// Initialize
+TABLE = new TableConfig(config_json.config)
+let mainGrid = createEmptyTable()
 
 // Input entries from the .json file and add to the grid
 config_json.schedule.forEach(entry => {

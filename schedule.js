@@ -1,31 +1,31 @@
 config_json = {
 	"config": {
 		"joinLongClasses": true,   //
-		"joinBreaks": true,        //
-        "joinFreePeriods": true,   //
+		"joinBreakPeriod": true,   //
+		"joinFreeSlots":   true,   //
 	},
-
+	
 	"times": [
-		[ 1    ,  "8:00"],
-		[ 2    ,  "8:50"],
-		[ 3    ,  "9:40"],
-		[ "TB" , "10:30"],
-		[ 4    , "10:50"],
-		[ 5    , "11:40"],
-		[ 6    , "12:30"],
-		[ "LB" ,  "1:20"],
-		[ 7    ,  "2:30"],
-		[ 8    ,  "3:20"],
-		[ 9    ,  "4:10"],
-		[ "END",  "5:00"]
+		{ "id": 1    ,   "label":  "8:00" },
+		{ "id": 2    ,   "label":  "8:50" },
+		{ "id": 3    ,   "label":  "9:40" },
+		{ "id": "TB" ,   "label": "10:30",   "break": "Tiffin<br>Break" },
+		{ "id": 4    ,   "label": "10:50" },
+		{ "id": 5    ,   "label": "11:40" },
+		{ "id": 6    ,   "label": "12:30" },
+		{ "id": "LB" ,   "label":  "1:20",   "break": "Lunch<br>Break" },
+		{ "id": 7    ,   "label":  "2:30" },
+		{ "id": 8    ,   "label":  "3:20" },
+		{ "id": 9    ,   "label":  "4:10" },
+		{ "id": "END",   "label":  "5:00",   "break": "End" }
 	],
 
 	"days": [
-		[0, "SAT"],
-		[1, "SUN"],
-		[2, "MON"],
-		[3, "TUE"],
-		[4, "WED"]
+		{"id": 1, "label": "SAT"},
+		{"id": 2, "label": "SUN"},
+		{"id": 3, "label": "MON"},
+		{"id": 4, "label": "TUE"},
+		{"id": 5, "label": "WED"}
 	],
 
 	"schedule": [
