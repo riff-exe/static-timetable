@@ -66,6 +66,7 @@ h3 {
 #error-container:empty { display: none; }
 #error-container {
 	display: block;
+	width: fit-content;
 	color: white;
 	font-family: 'Courier New', Courier, monospace;
 
@@ -73,4 +74,9 @@ h3 {
 	background-color: #8d1f1f;
 	border: 4px solid #ff0000;
 	border-radius: 10px
+}
+
+#error-header {
+	background-color: #ff9900;
+	color: black;
 }

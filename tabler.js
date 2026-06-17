@@ -1,3 +1,17 @@
+// #######################################
+// YOUR CUSTOMIZATIONS
+// #######################################
+
+
+
+
+
+
+// #######################################
+// END OF CUSTOMIZATIONS
+// #######################################
+
+
 // TODO: 
 // - Making the string inputs secure. Convert to "digestable" strings
 // - Error container
@@ -5,22 +19,11 @@
 // - Customizable Time and Date Labels and their table header with classes
 // - 
 
-ERRCOUNT = 0    // Consider this a static variable of this function
+ERRMESSAGES = [];
 function showError(msg) {
-    ERRCOUNT++;
-
-    const writeError = () => {
-        const container = document.getElementById("error-container");
-        if (!container) return;
-		container.innerHTML = `<span style="background-color: #ff9900; color: black;">Your schedule.js has ${ERRCOUNT} error(s)</span>\n${msg}`;
-		throw new Error(msg);
-    };
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", writeError, { once: true });
-    } else {
-        writeError();
-    }
+	// Saving the errors in the variables to display later after DOM loads
+	ERRMESSAGES.push(msg);
+	console.error(msg);
 }
 
 
@@ -39,7 +42,7 @@ TABLE = null;
 class ScheduleEntry {
 	constructor(entry) {
 		// For better error messages
-		this.primitive   = JSON.stringify(entry, null, 2)
+		this.primitive   = JSON.stringify(entry, null, 2);
 
 		/// ESSENTIAL PROPERTIES
 		// Checking if required properties are missing
@@ -56,7 +59,7 @@ class ScheduleEntry {
 		} else {
 			if(entry.content.length !== 3)
 				showError(`Expected 3 elements in property 'content':\n${this.primitive}`);
-			[this.course, this.lecturer, this.room] = entry.content
+			[this.course, this.lecturer, this.room] = entry.content;
 		}
 
 		/// OPTIONAL PROPERTIES
@@ -97,7 +100,7 @@ class TableData {
 				// `${entry.room}`,
 			]; //! ugly
 			this.id         = entry.id;
-			this.primitive  = entry.primitive
+			this.primitive  = entry.primitive;
 		} else {
 			this.content    = "";
 			this.type       = "free";
@@ -122,12 +125,13 @@ function convertToClassName(text) {
 		.trim()                         // Remove leading/trailing whitespace
 		.toLowerCase()                  // Convert to lowercase
 		.replace(/[^a-z0-9\s-]/g, '')   // Remove special characters
-		.replace(/\s+/g, '-');          // Replace spaces with a single hyphen ("law-201")
+		.replace(/\s+/g, '-');          // Replace spaces with hyphen
 }
 
+//! Very faulty
 function setStyle(text, style) {
 	switch(style) {
-		case "":               return text
+		case "":                return text
 		case "i":               return `<i>${text}</i>`;
 		case "b":               return `<b>${text}</b>`;
 		case "bi":case "ib":    return `<i><b>${text}</b></i>`;
@@ -406,8 +410,8 @@ function createEmptyTable() {
 }
 
 // Initialize
-TABLE = new TableConfig(config_json.config)
-let mainGrid = createEmptyTable()
+TABLE = new TableConfig(config_json.config);
+let mainGrid = createEmptyTable();
 
 // Input entries from the .json file and add to the grid
 config_json.schedule.forEach(entry => {
@@ -417,7 +421,16 @@ config_json.schedule.forEach(entry => {
 console.log(joiner(mainGrid));      // Create "free periods"
 
 document.addEventListener("DOMContentLoaded", () => {
-    // tablerH(mainGrid, document.getElementById("time-table-f"));
+	// Display error messages
+	if (ERRMESSAGES.length > 0) {
+		const container = document.getElementById("error-container");
+		if (container) {
+			err_header = `Your schedule.js has ${ERRMESSAGES.length} error(s)`
+			err_msgs   = ERRMESSAGES.join("\n" + "-".repeat(40) + "\n")
+			container.innerHTML = `<span id="error-header">${err_header}</span>\n${err_msgs}`;
+		}
+	}
+
 	tablerH(mainGrid, document.getElementById("time-table-h"));
 	tablerV(mainGrid, document.getElementById("time-table-v"));
 });
