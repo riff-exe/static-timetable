@@ -103,11 +103,11 @@ class ScheduleEntry {
 
 		/// OPTIONAL PROPERTIES
 		// Default values are being set for each
-		this.subtext     = entry.subtext            ?? "";
-		this.type        = entry.type.toLowerCase() ?? "class";
-		this.length      = entry.length             ?? ((this.type === "lab")? 3: 1);
-		this.classes     = entry.classes            ?? [];
-		this.id          = entry.id                 ?? null;
+		this.subtext     = entry.subtext         ?? "";
+		this.type        =(entry.type            ?? "class").toLowerCase();
+		this.length      = entry.length          ?? ((this.type === "lab")? 3: 1);
+		this.classes     = entry.classes         ?? [];
+		this.id          = entry.id              ?? null;
 
 		// showError(this.primitive);
 	}
@@ -117,7 +117,7 @@ class TableData {
 	/**
 	 * If 'entry = null`, the object will represent a "free slot". 
 	 * Then length will be required.
-	 * @param {ScheduleEntry} entry
+	 * @param {ScheduleEntry | null} entry
 	 * @param {number} length
 	 */
 	constructor(entry, length = 1) {
@@ -182,10 +182,10 @@ function setStyle(text, style) {
  * @returns string
  */
 function curator(entry) {
-	text = entry.content.join('<br>');
-	subtext = "";
+	let text = entry.content.join('<br>');
+	let subtext = "";
 	if (entry.subtext) {
-		txt = entry.subtext;
+		let txt = entry.subtext;
 		txt = `<span class="subtext">${txt}</span>`;
 		subtext = "<br>" + txt;
 		// console.log(setStyle(text, entry.style) + subtext)
@@ -254,19 +254,43 @@ function addToGrid(grid, entry) {
  * @param {TableData[][]} grid
  */
 function joiner(grid) {
-	grid.forEach(row => {
-		for (let i = 0; i < 3; i++) {
-			let j = 0;
-			while (j < 3) {
-				while (row[3*i+j] && j < 3) {
-					j += row[3*i+j].length;
+	const N = periodArray.length;
+	grid.forEach(day => {
+		let i = 0;
+		while (i < N) {
+			const beg = i;
+
+			// Checking whether current slot is empty or filled?
+			if (day[i]) {
+				// Not a free slot!
+				// Is the current event too long?
+				if (i + day[i].length > N) showError(`An event exceeded the timeframe for being too long:\n` + day[beg].primitive);
+
+				if (!tableConfig.joinLongClasses && day[i].type === "class") {
+					// Split long classes!
+					const end = i + day[i].length;
+					day[beg].length = 1;
+					
+					// Fill the length of the class with its units
+					i++;
+					while (i < end) {
+						day[i] = day[beg];
+						i++;
+					}
+				} else {
+					// Don't split long classes!
+					i += day[i].length;
 				}
-				if (j >= 3) break;
-				
-				let beg = 3*i+j; j++;
-				while (!row[3*i+j] && j < 3) j++;
-				
-				row[beg] = new TableData(null, 3*i+j - beg);
+			} else {
+				// Free slot!
+				if (tableConfig.joinFreeSlots) {
+					// Keep going until a filled slot is found!
+					do { i++; } while (!day[i] && i < N); 
+
+					day[beg] = new TableData(null, i - beg);
+				} else {
+					day[i] = new TableData(null, 1); i++;
+				}
 			}
 		}
 	});
@@ -446,7 +470,7 @@ config_json.schedule.forEach(entry => {
 
 console.log(mainGrid);
 // console.log(JSON.stringify(mainGrid, null, 2));
-// console.log(joiner(mainGrid));      // Create "free periods"
+console.log(joiner(mainGrid));      // Create "free periods"
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Display error messages
