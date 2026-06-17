@@ -5,6 +5,29 @@
 // - Customizable Time and Date Labels and their table header with classes
 // - 
 
+ERRCOUNT = 0    // Consider this a static variable of this function
+function showError(msg) {
+    ERRCOUNT++;
+
+    const writeError = () => {
+        const container = document.getElementById("error-container");
+        if (!container) return;
+		container.innerHTML = `<span style="background-color: #ff9900; color: black;">Your schedule.js has ${ERRCOUNT} error(s)</span>\n${msg}`;
+		throw new Error(msg);
+    };
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", writeError, { once: true });
+    } else {
+        writeError();
+    }
+}
+
+
+// ###################
+// ENTRIES & CONFIG
+// ###################
+
 class TableConfig {
 	constructor(config) {
 		this.joinLongClasses        = config.joinLongClasses        ?? true;
@@ -15,24 +38,24 @@ TABLE = null;
 
 class ScheduleEntry {
 	constructor(entry) {
-		function errorPropertyMissing(prop) {
-			throw new Error(`Missing property '${prop}'.`);
-		}
+		// For better error messages
+		this.primitive   = JSON.stringify(entry, null, 2)
+
 		/// ESSENTIAL PROPERTIES
 		// Checking if required properties are missing
-		if (!entry.period)      errorPropertyMissing("period");
-		if (!entry.day)         errorPropertyMissing("day");
+		if (!entry.period)          showError(`Missing property 'period':\n${this.primitive}`);
+		if (!entry.day)             showError(`Missing property 'day':\n${this.primitive}`);
 		if (!entry.content) {
 			// These properties are required if content was not given
-			if (!entry.course)      errorPropertyMissing("course");
-			if (!entry.lecturer)    errorPropertyMissing("lecturer");
-			if (!entry.room)        errorPropertyMissing("room");
-			this.course     = entry.course;
-			this.lecturer   = entry.lecturer;
-			this.room       = entry.room;
+			if (!entry.course)      showError(`Missing property 'course':\n${this.primitive}`);
+			if (!entry.lecturer)    showError(`Missing property 'lecturer':\n${this.primitive}`);
+			if (!entry.room)        showError(`Missing property 'room':\n${this.primitive}`);
+			this.course       = entry.course;
+			this.lecturer     = entry.lecturer;
+			this.room         = entry.room;
 		} else {
 			if(entry.content.length !== 3)
-				errorPropertyMissing("content");
+				showError(`Expected 3 elements in property 'content':\n${this.primitive}`);
 			[this.course, this.lecturer, this.room] = entry.content
 		}
 
@@ -40,8 +63,8 @@ class ScheduleEntry {
 		// Default values are being set for each
 		this.period      = entry.period;
 		this.day         = entry.day;
-		this.subtext     = entry.subtext    ?? "";
-		this.type        = entry.type       ?? "class";
+		this.subtext     = entry.subtext     ?? "";
+		this.type        = entry.type        ?? "class";
 		this.style       = entry.style       ?? "";
 		this.substyle    = entry.substyle    ?? "i";
 		this.style.toLowerCase();
@@ -50,6 +73,8 @@ class ScheduleEntry {
 		this.length      = entry.length      ?? ((this.type === "lab")? 3: 1);
 		this.classes     = entry.classes     ?? [];
 		this.id          = entry.id          ?? null;
+
+		// showError(this.primitive);
 	}
 }
 
@@ -70,14 +95,16 @@ class TableData {
 				// `course-${entry.course}`,
 				"lect-"+entry.lecturer,
 				// `${entry.room}`,
-			]; // TODO: ugly
+			]; //! ugly
 			this.id         = entry.id;
+			this.primitive  = entry.primitive
 		} else {
 			this.content    = "";
 			this.type       = "free";
 			this.length     = length;
 			this.classes    = [];
 			this.id         = null;
+			this.primitive  = "";
 		}
 	}
 }
@@ -144,25 +171,25 @@ const dayMap = new Map([
 function addToGrid(grid, entry) {
 	// Validating day property
 	if (!dayMap.has(entry.day)) {
-		throw new Error(`Invalid property 'day = ${entry.day}' in entry of type '${entry.type}' on period ${entry.period}.`);
+		showError(`Invalid property 'day':\n${entry.primitive}`);
 	}
 	let d = dayMap.get(entry.day)-1;
 
 	// Validating period property
 	if (!Number.isInteger(entry.period)|| entry.period <= 0 || entry.period > 9) {
-		throw new Error(`Invalid property 'period = ${entry.period}' in entry of type '${entry.type}' on day ${entry.day}.`);
+		showError(`Invalid property 'period':\n${entry.primitive}`);
 	}
 	let p = entry.period-1;
 	let l = entry.length;
 
 	// Overlapping breaks
 	if (Math.floor(p/3) !== Math.floor((p+l-1)/3)) {
-		throw new Error(`Entry too long. Entry of type '${entry.type}' on day ${entry.day} and period ${entry.period} is overlapping with a break period.`)
+		showError(`Entry too long. An entry is overlapping with a break period:\n${entry.primitive}`);
 	}
 
 	// Overlapping other periods
-	function errPeriodOverlap(entry) {
-		throw new Error(`Two entries share the same day '${entry.day}' and the same period ${entry.period}.`);
+	function errPeriodOverlap() {
+		showError(`An entry is overlapping with another at 'day = ${entry.day}' and 'period = ${entry.period}':\n${entry.primitive}`);
 	}
 	if (grid[d][p]) errPeriodOverlap();
 	let i = Math.floor(p/3)*3, j = i+3;
