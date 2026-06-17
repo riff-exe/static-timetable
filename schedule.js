@@ -1,10 +1,4 @@
-config_json = {
-	"config": {
-		"joinLongClasses": true,   //
-		"joinBreakPeriod": true,   //
-		"joinFreeSlots":   true,   //
-	},
-
+const config_json = {
 	"schedule": [
 		{
 			"day": "sat",

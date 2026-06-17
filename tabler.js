@@ -2,19 +2,25 @@
 // YOUR CUSTOMIZATIONS
 // #######################################
 
+const tableConfig = {
+	"joinLongClasses": true,   //
+	"joinBreakPeriod": true,   //
+	"joinFreeSlots":   true,   //
+};
+
 const periodArray = [
 	{ "key": 1    ,   "label":  "8:00" },
 	{ "key": 2    ,   "label":  "8:50" },
 	{ "key": 3    ,   "label":  "9:40" },
-	{ "key": "TB" ,   "label": "10:30",   "break": "Tiffin<br>Break" },
+	{ "key": "TB" ,   "label": "10:30",   "spanAll": "Tiffin<br>Break" },
 	{ "key": 4    ,   "label": "10:50" },
 	{ "key": 5    ,   "label": "11:40" },
 	{ "key": 6    ,   "label": "12:30" },
-	{ "key": "LB" ,   "label":  "1:20",   "break": "Lunch<br>Break" },
+	{ "key": "LB" ,   "label":  "1:20",   "spanAll": "Lunch<br>Break" },
 	{ "key": 7    ,   "label":  "2:30" },
 	{ "key": 8    ,   "label":  "3:20" },
 	{ "key": 9    ,   "label":  "4:10" },
-	{ "key": "END",   "label":  "5:00",   "break": "End" }
+	{ "key": "END",   "label":  "5:00",   "spanAll": "End" }
 ];
 const dayArray = [
 	{"key": "sat", "label": "SAT"},
@@ -57,7 +63,7 @@ const breakPeriodArray = ["Tiffin<br>Break", "Lunch<br>Break", "End"];
 // - Customizable Time and Date Labels and their table header with classes
 // - 
 
-ERRMESSAGES = [];
+const ERRMESSAGES = [];
 function showError(msg) {
 	// Saving the errors in the variables to display later after DOM loads
 	ERRMESSAGES.push(msg);
@@ -68,14 +74,6 @@ function showError(msg) {
 // ###################
 // ENTRIES & CONFIG
 // ###################
-
-class TableConfig {
-	constructor(config) {
-		this.joinLongClasses        = config.joinLongClasses        ?? true;
-		this.joinFreeSlots          = config.joinFreeSlots          ?? true;
-	}
-}
-TABLE = null;
 
 class ScheduleEntry {
 	constructor(entry) {
@@ -419,7 +417,6 @@ function createEmptyTable() {
 }
 
 // Initialize
-TABLE = new TableConfig(config_json.config);
 let mainGrid = createEmptyTable();
 
 // Input entries from the .json file and add to the grid
@@ -434,8 +431,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	if (ERRMESSAGES.length > 0) {
 		const container = document.getElementById("error-container");
 		if (container) {
-			err_header = `Your schedule.js has ${ERRMESSAGES.length} error(s)`
-			err_msgs   = ERRMESSAGES.join("\n" + "-".repeat(40) + "\n")
+			let err_header = `Your schedule.js has ${ERRMESSAGES.length} error(s)`
+			let err_msgs   = ERRMESSAGES.join("\n" + "-".repeat(40) + "\n")
 			container.innerHTML = `<span id="error-header">${err_header}</span>\n${err_msgs}`;
 		}
 	}
