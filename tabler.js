@@ -69,7 +69,7 @@ class ScheduleEntry {
 		function wrapToList(property) {
 			if (!property)                    return [];
 			else if (Array.isArray(property)) return property;
-			else /*Split by '\n' or <br>*/    return property.toString().split(/\n|<br\s*\/?>/i);
+			else /*Split by '\n' or <br>*/    return String(property).split(/\n|<br\s*\/?>/i);
 		}
 
 
@@ -327,18 +327,13 @@ function tablerH(grid, tableElem) {
 	tableElem.innerHTML = "";
 
 	// HEADER ROW
-	const periodRow = document.createElement("tr");
-
-	[CORNERHEAD, ...TIMELABELS].forEach(h => {
-		const phead = document.createElement("th");
-		phead.textContent = h;
-		phead.classList.add("period-header");
-
-		periodRow.appendChild(phead);
-	});
-
 	const thead = document.createElement("thead");
-	thead.appendChild(periodRow);
+	thead.innerHTML = `
+		<tr>
+			<th>${CORNERHEAD}</th>
+			${TIMELABELS.map(h => `<th class="period-header">${h}</th>`).join('')}
+		</tr>
+	`;
 	tableElem.appendChild(thead);
 
 
@@ -392,17 +387,13 @@ function tablerV(grid, tableElem) {
 	tableElem.innerHTML = "";
 
 	// HEADER ROW
-	const dayRow = document.createElement("tr");
-
-	[CORNERHEAD, ...DAYLABELS].forEach(h => {
-		const dhead = document.createElement("th");
-		dhead.textContent = h;
-		dhead.classList.add("day-header");
-		dayRow.appendChild(dhead);
-	});
-
 	const thead = document.createElement("thead");
-	thead.appendChild(dayRow);
+	thead.innerHTML = `
+		<tr>
+			<th>${CORNERHEAD}</th>
+			${DAYLABELS.map(h => `<th class="day-header">${h}</th>`).join('')}
+		</tr>
+	`;
 	tableElem.appendChild(thead);
 
 
