@@ -61,7 +61,9 @@ function showError(msg) {
 // SOME PROCESSING
 // ###################
 
-const TIMELABELS = periodArray.map(period => period.label)
+const TIMELABELS = periodArray.map(period => period.label);
+const DAYLABELS  = dayArray   .map(day    => day.label);
+const CORNERHEAD = "Time";
 // const breakPeriodArray = periodArray
 //     .filter(period => "spanAll" in period)
 //     .map(period => period.spanAll);
@@ -324,6 +326,8 @@ function createTD(data, type) {
 	return td;
 }
 
+
+
 /**
  * @param {TableData[][]} grid
  * @param {HTMLTableElement} tableElem 
@@ -334,7 +338,7 @@ function tablerH(grid, tableElem) {
 	// HEADER ROW
 	const periodRow = document.createElement("tr");
 
-	["Time", ...TIMELABELS].forEach(h => {
+	[CORNERHEAD, ...TIMELABELS].forEach(h => {
 		const phead = document.createElement("th");
 		phead.textContent = h;
 		phead.classList.add(["period-header"]);
@@ -348,14 +352,16 @@ function tablerH(grid, tableElem) {
 
 
 	// REST OF THE ROWS
-	const tbody = document.createElement("tbody");
+	const tbody     = document.createElement("tbody");
+	const breakSpan = (tableConfig.joinBreakPeriod? dayArray.length: 1);
 
 	for (let d = 0; d < dayArray.length; d++) {
 		const tr = document.createElement("tr");
 
 		// Day Header
-		dhead = document.createElement("th");
-		dhead.textContent = dayArray[d].label;
+		const dhead = document.createElement("th");
+		dhead.textContent = DAYLABELS[d];
+		dhead.classList.add(["day-header"]);
 		tr.appendChild(dhead);
 
 		// Table Datas
@@ -367,9 +373,9 @@ function tablerH(grid, tableElem) {
 				if (d == 0 || !(tableConfig.joinBreakPeriod))
 				{
 					// Create break periods
-					const breaktd = document.createElement("td")
+					const breaktd       = document.createElement("td");
 					breaktd.innerHTML   = data.content;
-					breaktd.rowSpan     = (tableConfig.joinBreakPeriod? dayArray.length: 1);
+					breaktd.rowSpan     = breakSpan;
 					breaktd.classList.add("card-type-break");
 					
 					tr.appendChild(breaktd);
@@ -394,54 +400,66 @@ function tablerH(grid, tableElem) {
 function tablerV(grid, tableElem) {
 	tableElem.innerHTML = "";
 
-	// Header Row
+	// HEADER ROW
 	const dayRow = document.createElement("tr");
-	["Time", ...dayArray.map(day => day.label)].forEach(h => {
-		const th = document.createElement("th");
-		th.textContent = h;
-		dayRow.appendChild(th);
+
+	[CORNERHEAD, ...DAYLABELS].forEach(h => {
+		const dhead = document.createElement("th");
+		dhead.textContent = h;
+		dhead.classList.add(["day-header"]);
+		dayRow.appendChild(dhead);
 	});
-	tableElem.appendChild(dayRow);
 
-	// Rest of the rows
-	let i = 0;
-	while (i < 3) {
-		let j = 0;
-		while (j < 3) {
-			// Time Header
-			const tr = document.createElement("tr");
-			const timeth = document.createElement("th");
-			timeth.textContent = TIMELABELS[4*i+j];
-			tr.appendChild(timeth);
+	const thead = document.createElement("thead");
+	thead.appendChild(dayRow);
+	tableElem.appendChild(thead);
 
-			// Class Periods
-			let d = 0;
-			while (d < grid.length) {
-				let data = grid[d][3*i+j];
-				if (data != null) {
-					tr.appendChild(createTD(data, "v"));
+
+	// REST OF THE ROWS
+	const tbody = document.createElement("tbody");
+	const breakSpan = (tableConfig.joinBreakPeriod? periodArray.length: 1);
+
+	for (let p = 0; p < periodArray.length; p++) {
+		const tr = document.createElement("tr");
+
+		// Period Header
+		const phead = document.createElement("th");
+		phead.textContent = TIMELABELS[p];
+		phead.classList.add(["period-header"]);
+		tr.appendChild(phead);
+		
+		// Table Datas
+		for (let d = 0; d < dayArray.length;) {
+			let data = grid[d][p];
+
+			if (data == null)
+			{
+				d++;    // If the slot is null, skip to next column/period
+			}
+			else if (data.type === "break")
+			{
+				// If it is a break, fill the row/day
+				const rep = (tableConfig.joinBreakPeriod? 1: periodArray.length);
+				while (d < dayArray.length) {
+					const breaktd       = document.createElement("td");
+					breaktd.innerHTML   = data.content;
+					breaktd.colSpan     = breakSpan;
+					breaktd.classList.add("card-type-break");
+					
+					tr.appendChild(breaktd);
+					d += breakSpan;
 				}
+			}
+			else
+			{
+				// Otherwise, it is a regular class/event
+				tr.appendChild(createTD(data, "v"));
 				d++;
 			}
-			tableElem.appendChild(tr);
-			j++;
 		}
-		// Time Header
-		const breaktr = document.createElement("tr");
-		const breaktimeth = document.createElement("th");
-		breaktimeth.textContent = TIMELABELS[4*i+3];
-		breaktr.appendChild(breaktimeth);
-
-		// Break Periods
-		const breaktd = document.createElement("td")
-		breaktd.innerHTML   = breakPeriodArray[i];
-		breaktd.colSpan     = grid.length;
-		breaktd.classList.add("sche-break");
-		
-		breaktr.appendChild(breaktd);
-		tableElem.appendChild(breaktr);
-		i++;
+		tbody.appendChild(tr);
 	}
+	tableElem.appendChild(tbody);
 }
 
 
@@ -490,6 +508,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	tablerH(mainGrid, document.getElementById("time-table-h"));
-	// tablerV(mainGrid, document.getElementById("time-table-v"));
+	tablerV(mainGrid, document.getElementById("time-table-v"));
 });
 
