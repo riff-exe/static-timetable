@@ -61,7 +61,7 @@ function showError(msg) {
 // SOME PROCESSING
 // ###################
 
-const timeLabels = periodArray.map(period => period.label)
+const TIMELABELS = periodArray.map(period => period.label)
 // const breakPeriodArray = periodArray
 //     .filter(period => "spanAll" in period)
 //     .map(period => period.spanAll);
@@ -104,7 +104,8 @@ class ScheduleEntry {
 		/// OPTIONAL PROPERTIES
 		// Default values are being set for each
 		this.subtext     = entry.subtext         ?? "";
-		this.type        =(entry.type            ?? "class").toLowerCase();
+		this.type        = entry.type            ?? "class";
+		this.type        = convertToClassName(this.type);
 		this.length      = entry.length          ?? ((this.type === "lab")? 3: 1);
 		this.classes     = entry.classes         ?? [];
 		this.id          = entry.id              ?? null;
@@ -285,7 +286,8 @@ function joiner(grid) {
 				// Free slot!
 				if (tableConfig.joinFreeSlots) {
 					// Keep going until a filled slot is found!
-					do { i++; } while (!day[i] && i < N); 
+					do { i++; }
+					while (!day[i] && i < N); 
 
 					day[beg] = new TableData(null, i - beg);
 				} else {
@@ -308,6 +310,7 @@ function joiner(grid) {
  * @param {string} type Either "h" or "v". Must be lowercase
  */
 function createTD(data, type) {
+	//! Where's the card lines?
 	const td = document.createElement("td");
 
 	td.innerHTML = data.content;
@@ -328,58 +331,61 @@ function createTD(data, type) {
 function tablerH(grid, tableElem) {
 	tableElem.innerHTML = "";
 
-	// Header Row
-	const timeRow = document.createElement("tr");
-	["Time", ...timeLabels].forEach(h => {
-		const th = document.createElement("th");
-		th.textContent = h;
-		timeRow.appendChild(th);
+	// HEADER ROW
+	const periodRow = document.createElement("tr");
+
+	["Time", ...TIMELABELS].forEach(h => {
+		const phead = document.createElement("th");
+		phead.textContent = h;
+		phead.classList.add(["period-header"]);
+
+		periodRow.appendChild(phead);
 	});
-	tableElem.appendChild(timeRow);
 
-	// First Row
-	const firstRow = document.createElement("tr");
-	let dayth = document.createElement("th");
+	const thead = document.createElement("thead");
+	thead.appendChild(periodRow);
+	tableElem.appendChild(thead);
 
-	// let dayArray = dayArray.map(day => day.label);
-	dayth.textContent = dayArray[0].label;
-	firstRow.appendChild(dayth);
 
-	let i = 0;
-	while (i < 3) {
-		let j = 0;
-		while (j < 3) {
-			let data = grid[0][3*i+j];
-			firstRow.appendChild(createTD(data, "h"));
-			j += data.length;
-		}
-		const breaktd = document.createElement("td")
-		breaktd.innerHTML   = breakPeriodArray[i];
-		breaktd.rowSpan     = grid.length;
-		breaktd.classList.add("sche-break");
-		
-		firstRow.appendChild(breaktd);
-		i++;
-	}
-	tableElem.appendChild(firstRow);
+	// REST OF THE ROWS
+	const tbody = document.createElement("tbody");
 
-	// Rest of the rows
-	let d = 1;
-	while (d < grid.length) {
+	for (let d = 0; d < dayArray.length; d++) {
 		const tr = document.createElement("tr");
-		dayth = document.createElement("th");
-		dayth.textContent = dayArray[d].label;
-		tr.appendChild(dayth);
 
-		let i = 0;
-		while (i < 9) {
-			let data = grid[d][i];
-			tr.appendChild(createTD(data, "h"));
-			i += data.length;
+		// Day Header
+		dhead = document.createElement("th");
+		dhead.textContent = dayArray[d].label;
+		tr.appendChild(dhead);
+
+		// Table Datas
+		for (let p = 0; p < periodArray.length;) {
+			let data = grid[d][p];
+
+			if (data.type === "break")
+			{
+				if (d == 0 || !(tableConfig.joinBreakPeriod))
+				{
+					// Create break periods
+					const breaktd = document.createElement("td")
+					breaktd.innerHTML   = data.content;
+					breaktd.rowSpan     = (tableConfig.joinBreakPeriod? dayArray.length: 1);
+					breaktd.classList.add("card-type-break");
+					
+					tr.appendChild(breaktd);
+				}
+				p++;
+			}
+			else
+			{
+				tr.appendChild(createTD(data, "h"));
+				p += data.length;
+			}
 		}
-		tableElem.appendChild(tr);
-		d++;
+		tbody.appendChild(tr);
 	}
+
+	tableElem.appendChild(tbody);
 }
 /**
  * @param {TableData[][]} grid
@@ -405,7 +411,7 @@ function tablerV(grid, tableElem) {
 			// Time Header
 			const tr = document.createElement("tr");
 			const timeth = document.createElement("th");
-			timeth.textContent = timeLabels[4*i+j];
+			timeth.textContent = TIMELABELS[4*i+j];
 			tr.appendChild(timeth);
 
 			// Class Periods
@@ -423,7 +429,7 @@ function tablerV(grid, tableElem) {
 		// Time Header
 		const breaktr = document.createElement("tr");
 		const breaktimeth = document.createElement("th");
-		breaktimeth.textContent = timeLabels[4*i+3];
+		breaktimeth.textContent = TIMELABELS[4*i+3];
 		breaktr.appendChild(breaktimeth);
 
 		// Break Periods
@@ -483,7 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	// tablerH(mainGrid, document.getElementById("time-table-h"));
+	tablerH(mainGrid, document.getElementById("time-table-h"));
 	// tablerV(mainGrid, document.getElementById("time-table-v"));
 });
 

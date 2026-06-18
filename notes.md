@@ -33,3 +33,19 @@
 
 **Tabler**: Iterates through the main grid and creates H/V table
 - 
+
+
+### Class names:
+
+```css
+.time-table
+.time-row
+
+.period-header
+.day-header
+
+.card-type-[class, lab, ]
+.card-title
+.card-content
+.card-desc
+```
