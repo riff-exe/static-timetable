@@ -8,26 +8,27 @@ const tableConfig = {
 	"joinFreeSlots":   true,   //
 };
 
-const periodArray = [
-	{ "key": 1    ,   "label":  "8:00" },
-	{ "key": 2    ,   "label":  "8:50" },
-	{ "key": 3    ,   "label":  "9:40" },
-	{ "key": "TB" ,   "label": "10:30",   "spanAll": "Tiffin<br>Break" },
-	{ "key": 4    ,   "label": "10:50" },
-	{ "key": 5    ,   "label": "11:40" },
-	{ "key": 6    ,   "label": "12:30" },
-	{ "key": "LB" ,   "label":  "1:20",   "spanAll": "Lunch<br>Break" },
-	{ "key": 7    ,   "label":  "2:30" },
-	{ "key": 8    ,   "label":  "3:20" },
-	{ "key": "END",   "label":  "4:00",   "spanAll": "End" }
-];
-const dayArray = [
-	{"key": "sat", "label": "SAT"},
-	{"key": "sun", "label": "SUN"},
-	{"key": "mon", "label": "MON"},
-	{"key": "tue", "label": "TUE"},
-	{"key": "wed", "label": "WED"}
-];
+// const overridePeriods = [
+// 	{ "key": 1    ,   "label":  "8:00" },
+// 	{ "key": 2    ,   "label":  "8:50" },
+// 	{ "key": 3    ,   "label":  "9:40" },
+// 	{ "key": "TB" ,   "label": "10:30",   "spanAll": "Tiffin<br>Break" },
+// 	{ "key": 4    ,   "label": "10:50" },
+// 	{ "key": 5    ,   "label": "11:40" },
+// 	{ "key": 6    ,   "label": "12:30" },
+// 	{ "key": "LB" ,   "label":  "1:20",   "spanAll": "Lunch<br>Break" },
+// 	{ "key": 7    ,   "label":  "2:30" },
+// 	{ "key": 8    ,   "label":  "3:20" },
+// 	{ "key": "END",   "label":  "4:00",   "spanAll": "End" }
+// ];
+
+// const overrideDays = [
+// 	{"key": "sat", "label": "SAT"},
+// 	{"key": "sun", "label": "SUN"},
+// 	{"key": "mon", "label": "MON"},
+// 	{"key": "tue", "label": "TUE"},
+// 	{"key": "wed", "label": "WED"}
+// ];
 
 
 
@@ -41,10 +42,12 @@ const dayArray = [
 // SOME PROCESSING
 // ###################
 
+const dayArray    = (typeof overrideDays    !== "undefined")? overrideDays   : config_json.days;
+const periodArray = (typeof overridePeriods !== "undefined")? overridePeriods: config_json.periods;
 
-const TIMELABELS = periodArray.map(period => period.label);
-const DAYLABELS  = dayArray   .map(day    => day.label);
-const CORNERHEAD = "Time";
+const TIMELABELS  = periodArray.map(period => period.label);
+const DAYLABELS   = dayArray   .map(day    => day.label);
+const CORNERHEAD  = "Time";
 
 
 // ###################
@@ -97,7 +100,7 @@ class ScheduleEntry {
 		this.type        = entry.type            ?? "class";
 		this.type        = convertToClassName(this.type);
 
-		this.length      = entry.length          ?? ((this.type === "lab")? 3: 1);
+		this.length      = entry.length          ?? 1;
 		if (!Number.isInteger(this.length) || this.length <= 0) {
 			showError(`Invalid property 'length'. ${this.length} is not a positive integer:\n` + this.primitive);
 		}

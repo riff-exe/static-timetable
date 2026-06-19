@@ -1,4 +1,24 @@
 const config_json = {
+	"periods": [
+		{ "key": 1    ,   "label":  "8:00" },
+		{ "key": 2    ,   "label":  "8:50" },
+		{ "key": 3    ,   "label":  "9:40" },
+		{ "key": "TB" ,   "label": "10:30",   "spanAll": "Tiffin<br>Break" },
+		{ "key": 4    ,   "label": "10:50" },
+		{ "key": 5    ,   "label": "11:40" },
+		{ "key": 6    ,   "label": "12:30" },
+		{ "key": "LB" ,   "label":  "1:20",   "spanAll": "Lunch<br>Break" },
+		{ "key": 7    ,   "label":  "2:30" },
+		{ "key": 8    ,   "label":  "3:20" },
+		{ "key": "END",   "label":  "4:00",   "spanAll": "End" }
+	],
+	"days": [
+		{"key": "sat", "label": "SAT"},
+		{"key": "sun", "label": "SUN"},
+		{"key": "mon", "label": "MON"},
+		{"key": "tue", "label": "TUE"},
+		{"key": "wed", "label": "WED"}
+	],
 	"schedule": [
 		// ----------- SAT ----------- //
 		{
@@ -55,6 +75,7 @@ const config_json = {
 			"period" : 4,
 			"content": ["CSE 2202", "KZN", "OS Lab"],
 			"type"   : "lab",
+			"length" : 3,
 		},
 		{
 			"day"    : "MON",
