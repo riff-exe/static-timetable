@@ -54,10 +54,26 @@ const CORNERHEAD  = "Time";
 // ENTRIES & CONFIG
 // ###################
 
-const ERRMESSAGES = [];
+ERRCOUNT = 0;
 function showError(msg) {
-	// Saving the errors in the variables to display later after DOM loads
-	ERRMESSAGES.push(msg);
+	const container = document.getElementById("error-container");
+	if (!container) console.error("'#error-container' is needed to display error messages");
+
+	ERRCOUNT++;
+
+	const header      = document.getElementById("error-header");
+	const header_text = `Your schedule.js has ${ERRCOUNT} error(s)`;
+	const spacer      = "\n" + "-".repeat(40) + "\n";
+	if (!header) {
+		// First error
+		container.innerHTML = `<span id="error-header">${header_text}</span>\n`;
+		container.innerHTML += msg;
+	} else {
+		// Later errors
+		header.innerHTML = header_text;
+		container.innerHTML += spacer + msg;
+	}
+
 	console.error(msg);
 }
 
@@ -67,6 +83,7 @@ class ScheduleEntry {
 	constructor(entry) {
 		// For better error messages
 		this.primitive   = JSON.stringify(entry, null, 2);
+		this.valid       = false;
 
 		function wrapToList(property) {
 			if (!property)                    return [];
@@ -77,17 +94,17 @@ class ScheduleEntry {
 
 		/// ESSENTIAL PROPERTIES
 		// Checking the period parameter
-		if (!entry.period)        showError(`Missing property 'period':\n` + this.primitive);
+		if (!entry.period)        return showError(`Missing property 'period':\n` + this.primitive);
 
 		this.period = periodArray.findIndex(time => time.key === entry.period);
-		if (this.period === -1)   showError(`Invalid property 'period':\n` + this.primitive);
+		if (this.period === -1)   return showError(`Invalid property 'period':\n` + this.primitive);
 
 
 		// Checking the day parameter
-		if (!entry.day)           showError(`Missing property 'day':\n`    + this.primitive);
+		if (!entry.day)           return showError(`Missing property 'day':\n`    + this.primitive);
 
 		this.day = dayArray.findIndex(day => day.key === entry.day.toLowerCase());
-		if (this.day === -1)      showError(`Invalid property 'day':\n`    + this.primitive);
+		if (this.day === -1)      return showError(`Invalid property 'day':\n`    + this.primitive);
 
 		/// OPTIONAL PROPERTIES
 		// Default values are being set for each
@@ -102,11 +119,12 @@ class ScheduleEntry {
 
 		this.length      = entry.length          ?? 1;
 		if (!Number.isInteger(this.length) || this.length <= 0) {
-			showError(`Invalid property 'length'. ${this.length} is not a positive integer:\n` + this.primitive);
+			return showError(`Invalid property 'length'. ${this.length} is not a positive integer:\n` + this.primitive);
 		}
 
 		this.classes     = entry.classes         ?? [];
 		this.id          = entry.id              ?? null;
+		this.valid       = true;
 
 		// showError(this.primitive);
 	}
@@ -200,6 +218,8 @@ function curator(entry) {
  * @param {ScheduleEntry} entry 
  */
 function addToGrid(grid, entry) {
+	if (!entry.valid) return;  // Ignore invalid entries
+
 	let d   = entry.day;
 	let p   = entry.period;
 	let l   = entry.length;
@@ -207,9 +227,9 @@ function addToGrid(grid, entry) {
 
 	function errPeriodOverlap(event_type) {
 		if (event_type === "break") {
-			showError(`An entry is overlapping with a break period:\n` + entry.primitive);
+			return showError(`An entry is overlapping with a break period:\n` + entry.primitive);
 		} else {
-			showError(`An entry is overlapping with another at 'day = ${DAYLABELS[entry.day]}' and 'period = ${entry.period}':\n` + entry.primitive);
+			return showError(`An entry is overlapping with another at 'day = ${DAYLABELS[entry.day]}' and 'period = ${entry.period}':\n` + entry.primitive);
 		}
 	}
 
@@ -260,7 +280,7 @@ function joiner(grid) {
 			if (day[i]) {
 				// Not a free slot!
 				// Is the current event too long?
-				if (i + day[i].length > N) showError(`An event exceeded the timeframe for being too long:\n` + day[beg].primitive);
+				if (i + day[i].length > N) return showError(`An event exceeded the timeframe for being too long:\n` + day[beg].primitive);
 
 				if (!tableConfig.joinLongClasses && day[i].type === "class") {
 					// Split long classes!
@@ -468,27 +488,20 @@ function createTableWithBreaks() {
 	return grid
 }
 
-// Initialize
-let mainGrid = createTableWithBreaks();
 
-// Input entries from the .json file and add to the grid
-config_json.schedule.forEach(entry => {
-	addToGrid(mainGrid, new ScheduleEntry(entry));
-});
-
-console.log(joiner(mainGrid));      // Create "free periods"
 
 document.addEventListener("DOMContentLoaded", () => {
-	// Display error messages
-	if (ERRMESSAGES.length > 0) {
-		const container = document.getElementById("error-container");
-		if (container) {
-			let err_header = `Your schedule.js has ${ERRMESSAGES.length} error(s)`
-			let err_msgs   = ERRMESSAGES.join("\n" + "-".repeat(40) + "\n")
-			container.innerHTML = `<span id="error-header">${err_header}</span>\n${err_msgs}`;
-		}
-	}
+	// Initialize
+	let mainGrid = createTableWithBreaks();
+	
+	// Input entries from the .json file and add to the grid
+	config_json.schedule.forEach(entry => {
+		addToGrid(mainGrid, new ScheduleEntry(entry));
+	});
+	
+	console.log(joiner(mainGrid));      // Create "free periods"
 
+	// Display error messages
 	tablerH(mainGrid, document.getElementById("time-table-h"));
 	tablerV(mainGrid, document.getElementById("time-table-v"));
 });
