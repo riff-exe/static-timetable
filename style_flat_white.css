@@ -48,9 +48,6 @@ body {
 	font-family: var(--def-font);
 	font-weight: 600;
 }
-.time-table td:empty {
-	background-color: inherit;
-}
 .time-table th {
 	background-color: var(--table-bg-color);
 	font-family: var(--def-font);
@@ -58,9 +55,8 @@ body {
 .time-table tr td, th {
 	padding: 10px;
 }
-
-.sche-CT {
-	font-weight: bolder !important;
+.card-type-free {
+	background-color: inherit !important;
 }
 
 #error-container:empty { display: none; }
