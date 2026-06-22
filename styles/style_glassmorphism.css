@@ -1,0 +1,246 @@
+:root {
+	/* Base & Text */
+	--text-color: #e8eaf6;
+	--secondary-text-color: #b0b0c0;
+	--def-font: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+	/* Vibrant Color Palette */
+	--vibrant-pink-rgb: 233, 30, 99;
+	--vibrant-teal-rgb: 0, 150, 136;
+	--vibrant-blue-rgb: 33, 150, 243;
+
+	/* Day Glow (Inner Fill) Styles */
+	--fallback-accent-rgb: var(--vibrant-pink-rgb);
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: linear-gradient(135deg, #1c1e28 0%, #181a21 100%);
+	font-family: var(--def-font);
+	color: var(--text-color);
+	padding: 30px 25px;
+	line-height: 1.6;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.time-table-title {
+	text-align: center;
+	margin-bottom: 40px;
+	font-size: 2.6em;
+	font-weight: 600;
+	color: var(--text-color);
+	letter-spacing: 1px;
+	text-shadow:
+		0 0 8px rgba(var(--vibrant-blue-rgb), 0.4),
+		0 0 15px rgba(var(--vibrant-pink-rgb), 0.25),
+		0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.table-container {
+	width: fit-content;
+	/* Adjusted for horizontal layout */
+	overflow-x: auto;
+	padding: 20px;
+}
+
+#error-container:empty { display: none; }
+#error-container {
+	display: block;
+	width: fit-content;
+	padding: 16px;
+
+	color: var(--text-color);
+	font-family: 'Consolas', 'Courier New', Courier, monospace;
+	background-color: rgba(40, 43, 58, 0.25);
+	font-size: 0.85em;
+	border: 1px solid rgba(180, 180, 220, 0.08);
+	backdrop-filter: blur(6px);
+	box-shadow:
+		inset 3px 3px 7px rgba(0, 0, 0, 0.3),
+		inset -3px -3px 7px rgba(255, 255, 255, 0.04);
+}
+/* #error-container {
+
+	background-color: #8d1f1f;
+	border: 4px solid #ff0000;
+	border-radius: 10px
+} */
+
+#error-header {
+	color: #ff9800;
+	background-color: rgba(55, 60, 80, 0.3);
+	border: 1px solid rgba(200, 200, 255, 0.15);
+	margin: 16px;
+	padding: 6px;
+	border-radius: 6px
+}
+
+.time-table {
+	/* width: 100%; */
+	border-collapse: separate;
+	border-spacing: 6px;
+	background-color: rgba(35, 38, 50, 0.35);
+	backdrop-filter: blur(15px);
+	text-align: center;
+	border-radius: 22px;
+	border: 1px solid rgba(200, 200, 255, 0.1);
+	box-shadow:
+		7px 7px 18px rgba(0, 0, 0, 0.45),
+		-7px -7px 18px rgba(255, 255, 255, 0.05);
+	padding: 15px;
+}
+
+.time-table th,
+.time-table td {
+	padding: 10px 8px;
+	font-weight: 500;
+	vertical-align: middle;
+	border-radius: 12px;
+}
+
+/* General Header Styling for all TH elements */
+.time-table th {
+	background-color: rgba(55, 60, 80, 0.3);
+	color: #d8dae8;
+	font-weight: 600;
+	border: 1px solid rgba(200, 200, 255, 0.15);
+	backdrop-filter: blur(8px);
+	box-shadow:
+		4px 4px 10px rgba(0, 0, 0, 0.35),
+		-4px -4px 10px rgba(255, 255, 255, 0.06);
+}
+
+/* THEAD Headers: "Day" (first) and Time Slots (rest) */
+.time-table thead th {
+	font-size: 0.7em;
+	/* Base for all thead headers */
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+}
+
+.time-table thead th:first-child {
+	/* "Time" header */
+	min-width: 70px;
+}
+
+.period-header {
+	/* Time Slot Headers */
+	font-size: 0.7em;
+}
+
+/* TBODY Headers: Day Names (SAT, SUN, etc.) - These are clickable */
+.day-header {
+	font-size: 0.75em;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	cursor: pointer;
+	user-select: none;
+}
+
+tbody th.day-header-active {
+	/* Active Day Header in tbody */
+	background-color: rgb(var(--vibrant-blue-rgb));
+	color: white;
+	box-shadow:
+		0 0 12px 2px rgba(var(--vibrant-blue-rgb), 0.7),
+		4px 4px 10px rgba(0, 0, 0, 0.35),
+		-4px -4px 10px rgba(255, 255, 255, 0.06);
+}
+
+.card-type-active {
+	background-color: rgba(40, 43, 58, 0.25);
+	font-size: 0.85em;
+	border: 1px solid rgba(180, 180, 220, 0.08);
+	backdrop-filter: blur(6px);
+	box-shadow:
+		inset 3px 3px 7px rgba(0, 0, 0, 0.3),
+		inset -3px -3px 7px rgba(255, 255, 255, 0.04);
+}
+
+.day-highlight {
+	--current-accent-rgb: var(--fallback-accent-rgb);
+	background-color: rgba(var(--current-accent-rgb), 0.15) !important;
+	border-color: rgba(var(--current-accent-rgb), 0.6) !important;
+	box-shadow:
+		inset 3px 3px 7px rgba(0, 0, 0, 0.3),
+		inset -3px -3px 7px rgba(255, 255, 255, 0.04);
+}
+
+.card-type-active.day-highlight {
+	--current-accent-rgb: var(--subject-active-rgb);
+}
+
+.card-title {
+	display: block;
+	font-weight: 700;
+	color: var(--text-color);
+	margin-bottom: 5px;
+	font-size: 1em;
+	letter-spacing: 0.03em;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.card-type-active .card-title {
+	color: rgb(var(--subject-active-rgb));
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.day-highlight .card-title {
+	text-shadow: none !important;
+}
+
+:not(.card-type-active).day-highlight .card-title {
+	color: var(--text-color);
+}
+
+.card-content {
+	display: block;
+	font-size: 0.9em;
+	color: var(--secondary-text-color);
+	line-height: 1.4;
+}
+
+.day-highlight .card-content {
+	color: #dce0ee;
+}
+
+.card-type-free {
+	background-color: transparent;
+	border-color: transparent;
+	box-shadow: none;
+	backdrop-filter: none;
+}
+
+.card-type-break {
+	/* This class is on a TD with rowspan (for horizontal) */
+	background-color: rgba(var(--vibrant-teal-rgb), 0.15) !important;
+	border: 1px solid rgba(var(--vibrant-teal-rgb), 0.3) !important;
+	backdrop-filter: blur(7px);
+	font-weight: 600;
+	font-style: italic;
+	color: rgb(var(--vibrant-teal-rgb));
+	font-size: 0.85em;
+	box-shadow:
+		2px 2px 5px rgba(0, 0, 0, 0.2),
+		-2px -2px 5px rgba(var(--vibrant-teal-rgb), 0.1) !important;
+}
+
+
+td:has(.card-label-cse-1200)  {--subject-active-rgb: 211, 47, 47}
+td:has(.card-label-cse-1201)  {--subject-active-rgb: 255, 193, 7}
+td:has(.card-label-cse-1202)  {--subject-active-rgb: 3, 169, 244}
+td:has(.card-label-cse-1203)  {--subject-active-rgb: 76, 175, 80}
+td:has(.card-label-cse-1204)  {--subject-active-rgb: 233, 30, 99}
+td:has(.card-label-eee-1251)  {--subject-active-rgb: 0, 170, 156}
+td:has(.card-label-eee-1252)  {--subject-active-rgb: 0, 121, 107}
+td:has(.card-label-math-1213) {--subject-active-rgb: 63, 81, 181}
+td:has(.card-label-phy-1213)  {--subject-active-rgb: 255, 152, 0}
+td:has(.card-label-phy-1214)  {--subject-active-rgb: 156, 39, 176}

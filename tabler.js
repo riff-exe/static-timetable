@@ -355,6 +355,7 @@ function createTD(data, type) {
  * @param {HTMLTableElement} tableElem 
  */
 function tablerH(grid, tableElem) {
+	if (!tableElem) return console.warn("Horizontal Table not found")
 	tableElem.innerHTML = "";
 
 	// HEADER ROW
@@ -412,9 +413,10 @@ function tablerH(grid, tableElem) {
 }
 /**
  * @param {TableData[][]} grid
- * @param {HTMLTableElement} tableElem 
+ * @param {HTMLTableElement|null} tableElem 
  */
 function tablerV(grid, tableElem) {
+	if (!tableElem) return console.warn("Vertical Table not found")
 	tableElem.innerHTML = "";
 
 	// HEADER ROW
