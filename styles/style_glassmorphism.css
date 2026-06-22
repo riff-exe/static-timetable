@@ -45,11 +45,10 @@ body {
 }
 
 .table-container {
-	width: 100%;
-	max-width: 1200px;
+	width: fit-content;
 	/* Adjusted for horizontal layout */
 	overflow-x: auto;
-	padding: 10px;
+	padding: 20px;
 }
 
 #error-container:empty { display: none; }
@@ -85,7 +84,7 @@ body {
 }
 
 .time-table {
-	width: 100%;
+	/* width: 100%; */
 	border-collapse: separate;
 	border-spacing: 6px;
 	background-color: rgba(35, 38, 50, 0.35);
@@ -134,12 +133,11 @@ body {
 
 .period-header {
 	/* Time Slot Headers */
-	min-width: 90px;
+	font-size: 0.7em;
 }
 
 /* TBODY Headers: Day Names (SAT, SUN, etc.) - These are clickable */
-.time-table tbody th {
-	min-width: 70px;
+.day-header {
 	font-size: 0.75em;
 	letter-spacing: 0.05em;
 	text-transform: uppercase;
@@ -167,7 +165,7 @@ tbody th.day-header-active {
 		inset -3px -3px 7px rgba(255, 255, 255, 0.04);
 }
 
-.day-glow {
+.day-highlight {
 	--current-accent-rgb: var(--fallback-accent-rgb);
 	background-color: rgba(var(--current-accent-rgb), 0.15) !important;
 	border-color: rgba(var(--current-accent-rgb), 0.6) !important;
@@ -176,7 +174,7 @@ tbody th.day-header-active {
 		inset -3px -3px 7px rgba(255, 255, 255, 0.04);
 }
 
-.card-type-active.day-glow {
+.card-type-active.day-highlight {
 	--current-accent-rgb: var(--subject-active-rgb);
 }
 
@@ -195,11 +193,11 @@ tbody th.day-header-active {
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.day-glow .card-title {
+.day-highlight .card-title {
 	text-shadow: none !important;
 }
 
-:not(.card-type-active).day-glow .card-title {
+:not(.card-type-active).day-highlight .card-title {
 	color: var(--text-color);
 }
 
@@ -210,7 +208,7 @@ tbody th.day-header-active {
 	line-height: 1.4;
 }
 
-.day-glow .card-content {
+.day-highlight .card-content {
 	color: #dce0ee;
 }
 

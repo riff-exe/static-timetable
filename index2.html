@@ -4,9 +4,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Class Timetable</title>
-		<script type="text/javascript" src="schedule.json.js"></script>
+		<script type="text/javascript" src="schedule.json.js"></script> <!-- YOUR SCHEDULE --->
 		<script type="text/javascript" src="tabler.js"></script>
-		<link rel="stylesheet" href="styles/style_glassmorphism.css">
+		<link rel="stylesheet" href="styles/style_glassmorphism.css">   <!-- YOUR CSS THEME -->
 	</head>
 	<body>
 		<div id="main-wrapper">
@@ -19,41 +19,16 @@
 					<!-- AUTOMATICALLY GENERATES THE TABLE HERE -->
 				</table>
 			</div>
+
+			<div class="table-container">
+				<h3 class="time-table-title">Vertical Table</h3>
+				<table id="time-table-v" class="time-table">
+					<!-- AUTOMATICALLY GENERATES THE TABLE HERE -->
+				</table>
+			</div>
 		</div>
 
-
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				const timeTableH = document.getElementById('time-table-h');
-				if (timeTableH) {
-					const dayHeadersH = Array.from(timeTableH.querySelectorAll('.day-header'));
-					dayHeadersH.forEach(header => {
-						header.addEventListener('click', function() {
-							// Remove glow from any previously highlighted cells
-							timeTableH.querySelectorAll('td.day-glow').forEach(td => {
-								td.classList.remove('day-glow');
-							});
-		
-							// Update active day header state
-							dayHeadersH.forEach(h => h.classList.remove('day-header-active'));
-							this.classList.add('day-header-active');
-		
-							// Use the clicked row directly; it already contains the cells for that day
-							const row = this.parentElement;
-							const rowcells = Array.from(row.querySelectorAll('.card-type-active'))
-		
-							rowcells.forEach(cell => {
-								cell.classList.add('day-glow');
-							});
-						});
-					});
-				} else console.warn("Script cannot find `time-table-h`");
-
-				const timeTableV = document.getElementById('time-table-v');
-				if (timeTableV) {
-					//
-				} else console.warn("Script cannot find `time-table-v`");
-			});
-		</script>
+		<!-- YOUR SCRIPTS GOES HERE -->
+		<script type="text/javascript" src="scripts/day_highlight_tableH.js"></script>
 	</body>
 </html>
