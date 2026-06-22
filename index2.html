@@ -24,29 +24,35 @@
 
 		<script>
 			document.addEventListener('DOMContentLoaded', function() {
-				const timeTable = document.getElementById('time-table-h');
-				const dayHeaders = document.querySelectorAll('.day-header');
-
-				Array.from(dayHeaders).forEach(header => {
-					header.addEventListener('click', function() {
-						// Remove glow from any previously highlighted cells
-						timeTable.querySelectorAll('td.day-glow').forEach(td => {
-							td.classList.remove('day-glow');
-						});
-
-						// Update active day header state
-						dayHeaders.forEach(h => h.classList.remove('day-header-active'));
-						this.classList.add('day-header-active');
-
-						// Use the clicked row directly; it already contains the cells for that day
-						const row = this.parentElement;
-						const rowcells = row.querySelectorAll('.card-type-active')
-
-						Array.from(rowcells).forEach(cell => {
-							cell.classList.add('day-glow');
+				const timeTableH = document.getElementById('time-table-h');
+				if (timeTableH) {
+					const dayHeadersH = Array.from(timeTableH.querySelectorAll('.day-header'));
+					dayHeadersH.forEach(header => {
+						header.addEventListener('click', function() {
+							// Remove glow from any previously highlighted cells
+							timeTableH.querySelectorAll('td.day-glow').forEach(td => {
+								td.classList.remove('day-glow');
+							});
+		
+							// Update active day header state
+							dayHeadersH.forEach(h => h.classList.remove('day-header-active'));
+							this.classList.add('day-header-active');
+		
+							// Use the clicked row directly; it already contains the cells for that day
+							const row = this.parentElement;
+							const rowcells = Array.from(row.querySelectorAll('.card-type-active'))
+		
+							rowcells.forEach(cell => {
+								cell.classList.add('day-glow');
+							});
 						});
 					});
-				});
+				} else console.warn("Script cannot find `time-table-h`");
+
+				const timeTableV = document.getElementById('time-table-v');
+				if (timeTableV) {
+					//
+				} else console.warn("Script cannot find `time-table-v`");
 			});
 		</script>
 	</body>
