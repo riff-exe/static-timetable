@@ -5,7 +5,7 @@ This is a simple hobby project I made to quickly create and style my class timet
 - No backend. Literally zero setup needed, let it be building, compilation, or package installation.
 - Infinitely many styling options with CSS and scripting options with JS.
 - Very fast and lightweight.
-- You can treat this project as a foundation for your very own highly-customized scheduling system. Fork it and start adding more features.
+- You can treat this project as the starting point for your very own personalized scheduling system. Fork it and start adding more features.
 
 
 ## Usage
@@ -20,6 +20,7 @@ Now what you can do is:
 3. Choose JS scripts from the `scripts/` folder , or create your own.
 4. Star ⭐ this repository if you like it.
 
+#### Project File Structure
 ```
 ├─  styles/              // Premade CSS styles
 ├─  scripts/             // Premade JS scripts
@@ -30,40 +31,45 @@ Now what you can do is:
 
 ### Creating your timetable
 Your schedule data (time, day & content) is written and saved in `schedule.json.js`. This data is then used to create an HTML table in `index.html` with `tabler.js`. `schedule.json.js` is made as simple and readable as possible. Here are all the elements of `schedule.json.js`:
-1. `periods`: List of objects `{"key", "label", "spanAll"}`. Defines all the columns in the timetable and the key and label of each period. Breaks are defined and labeled by "spanAll".
-```json
+
+**1. `periods`:** Defines all the columns in the timetable and the key and label of each period. Breaks are defined and labeled by "spanAll".
+
+```js
 "periods": [
-  { "key": 1    ,   "label": "10:50" },
-  { "key": 2    ,   "label": "11:40" },
-  { "key": 3    ,   "label": "12:30" },
-  { "key": "LB" ,   "label":  "1:20",   "spanAll": "Lunch<br>Break" },
-  ...
+    { "key": 1    ,   "label": "10:50" },
+    { "key": 2    ,   "label": "11:40" },
+    { "key": 3    ,   "label": "12:30" },
+    { "key": "LB" ,   "label":  "1:20",   "spanAll": "Lunch<br>Break" },
+    ......
 ],
 ```
 
-2. `days`: List of objects `{"key", "label"}`. Defines all the rows in the timetable and the key and label of each day.
-```json
+
+**2. `days`:** Defines all the rows in the timetable and the key and label of each day.
+
+```js
 "days": [
-  {"key": "sun", "label": "SUNDAY"},
-  {"key": "mon", "label": "MONDAY"},
-  ...
+    {"key": "sun", "label": "SUNDAY"},
+    {"key": "mon", "label": "MONDAY"},
+    ......
 ],
 ```
 
-3. `schedule`:
+
+**3. `schedule`:** List of schedule entries
 
 
-| **Required Properties**    | **Description**                                                                         |
-| -------------------------- | --------------------------------------------------------------------------------------- |
-| 1. `day`                   | Must be a key from "days" (case insensitive)                                            |
-| 2. `period`                | Must be a key from "periods" (case insensitive)                                         |
-| **Optional Properties**    | **Description**                                                                         |
-| 1. `content`               | A list of strings or a string with newlines. Auto-creates classes 'card-label-<string>' |
-| 2. `desc`                  | A list of strings or a string with newlines. Doesn't auto-create any classes            |
-| 3. `length`                | Number of periods the entry/event occupies (default is 1)                               |
-| 4. `type`                  | Specify the type of event. Mostly useful for styling (default is "class")               |
-| 5. `classes`               | List of custom CSS classes for better customization                                     |
-| 6. `id`                    | CSS ID for customization                                                                |
+| <u>**Required Properties**</u> | <u>**Description**</u>                                                                       |
+| ------------------------------ | :------------------------------------------------------------------------------------------- |
+| 1. `day`                       | Must be a key from "days" (_case insensitive_)                                               |
+| 2. `period`                    | Must be a key from "periods" (_case insensitive_)                                            |
+| <u>**Optional Properties**</u> | <u>**Description**</u>                                                                       |
+| 3. `content`                   | A list of strings or a string with newlines. Auto-creates classes like `card-label-<string>` |
+| 4. `desc`                      | A list of strings or a string with newlines. Doesn't auto-create any classes                 |
+| 5. `length`                    | Number of periods the entry/event occupies (default is 1)                                    |
+| 6. `type`                      | Specify the type of event. Mostly useful for styling (default is "class")                    |
+| 7. `classes`                   | List of custom CSS classes for better customization                                          |
+| 8. `id`                        | CSS ID for customization                                                                     |
 
 
 ### Creating your CSS themes
