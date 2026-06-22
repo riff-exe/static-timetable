@@ -76,7 +76,6 @@ body {
 	font-weight: 500;
 	vertical-align: middle;
 	border-radius: 12px;
-	border: 1px solid transparent;
 }
 
 /* General Header Styling for all TH elements */
@@ -100,11 +99,11 @@ body {
 }
 
 .time-table thead th:first-child {
-	/* "Day" header */
+	/* "Time" header */
 	min-width: 70px;
 }
 
-.time-table thead th:not(:first-child) {
+.period-header {
 	/* Time Slot Headers */
 	min-width: 90px;
 }
@@ -119,7 +118,7 @@ body {
 	user-select: none;
 }
 
-.time-table tbody th.day-header-active {
+.day-header-active {
 	/* Active Day Header in tbody */
 	background-color: var(--vibrant-blue);
 	color: white;
@@ -129,7 +128,7 @@ body {
 		-4px -4px 10px rgba(255, 255, 255, 0.06);
 }
 
-.time-table td:not(.card-type-break):not(:empty) {
+.card-type-active {
 	background-color: rgba(40, 43, 58, 0.25);
 	font-size: 0.85em;
 	border: 1px solid rgba(180, 180, 220, 0.08);
@@ -139,7 +138,7 @@ body {
 		inset -3px -3px 7px rgba(255, 255, 255, 0.04);
 }
 
-.time-table td.day-glow {
+.day-glow {
 	--current-accent-rgb: var(--fallback-accent-rgb);
 	background-color: rgba(var(--current-accent-rgb), 0.15) !important;
 	border-color: rgba(var(--current-accent-rgb), 0.6) !important;
@@ -148,11 +147,11 @@ body {
 		inset -3px -3px 7px rgba(255, 255, 255, 0.04);
 }
 
-.time-table td:is(.card-type-class, .card-type-lab).day-glow {
+.card-type-active.day-glow {
 	--current-accent-rgb: var(--subject-active-rgb);
 }
 
-.time-table td .card-title {
+.card-title {
 	display: block;
 	font-weight: 700;
 	color: var(--text-color);
@@ -162,27 +161,27 @@ body {
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-.time-table td:is(.card-type-class, .card-type-lab) .card-title {
+.card-type-active .card-title {
 	color: rgb(var(--subject-active-rgb));
 	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.time-table td.day-glow .card-title {
+.day-glow .card-title {
 	text-shadow: none !important;
 }
 
-.time-table td.day-glow:not(.card-type-class, .card-type-lab) .card-title {
+.card-type-active.day-glow .card-title {
 	color: var(--text-color);
 }
 
-.time-table td .card-content {
+.card-content {
 	display: block;
 	font-size: 0.9em;
 	color: var(--secondary-text-color);
 	line-height: 1.4;
 }
 
-.time-table td.day-glow .card-content {
+.day-glow .card-content {
 	color: #dce0ee;
 }
 
