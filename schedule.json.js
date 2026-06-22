@@ -28,7 +28,7 @@ const config_json = {
 		{"key": "tue", "label": "TUE"},
 		{"key": "wed", "label": "WED"}
 	],
-	"schedule": [
+	"entries": [
 		// ====== How to write your own schedule entries ====== //
 		/* [REQUIRED PROPERTIES]
 		 * "day"     : Must be a key from "days" (case insensitive)

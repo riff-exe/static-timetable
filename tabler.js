@@ -506,7 +506,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	let mainGrid = createTableWithBreaks();
 	
 	// Input entries from the .json file and add to the grid
-	config_json.schedule.forEach(entry => {
+	config_json.entries.forEach(entry => {
 		addToGrid(mainGrid, new ScheduleEntry(entry));
 	});
 	
