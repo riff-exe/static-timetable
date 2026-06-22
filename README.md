@@ -1,4 +1,8 @@
 # Static Timetable
+
+<video src="assets/timetable_demo_v1.mp4" width="100%" controls></video>
+
+
 This is a simple hobby project I made to quickly create and style my class timetables. This is simple enough for anyone with basic knowledge in web-dev to configure, but powerful and flexible enough to adapt to anyone's needs. This is because your schedule data, page layout (HTML), style (CSS) and additional scripts (JS) all live in different files. We project avoids using any backend for simplicity, availability and to guarantee a low barrier for entry.
 
 
@@ -12,7 +16,7 @@ This is a simple hobby project I made to quickly create and style my class timet
 
 
 ## Usage
-Download all source files or clone the repository. After downloading, simply open `index.html` with your browser and you should see the template timetable. That's it! No setup needed :)
+Download all source files or clone the repository. After downloading, simply open `index.html` with your browser and you should see the template timetable. That's it! No setup needed \:)
 ```bash
 git clone https://github.com/riff-exe/static-timetable.git
 ```
