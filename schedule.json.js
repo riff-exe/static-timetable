@@ -43,6 +43,38 @@ const config_json = {
 		 * "id"      : CSS ID for customization
 		 */
 
+		// ------- Class Tests ------- //
+		{
+			"day"    : "SAT",
+			"period" : 1,
+			"content": ["CSE 2205", "CT"],
+			"type"   : "CT",
+		},
+		{
+			"day"    : "SUN",
+			"period" : 1,
+			"content": ["Hum 2213", "CT"],
+			"type"   : "CT",
+		},
+		{
+			"day"    : "MON",
+			"period" : 1,
+			"content": ["CSE 2203", "CT"],
+			"type"   : "CT",
+		},
+		{
+			"day"    : "TUE",
+			"period" : 1,
+			"content": ["Math 2213", "CT"],
+			"type"   : "CT",
+		},
+		{
+			"day"    : "WED",
+			"period" : 1,
+			"content": ["CSE 2201", "CT"],
+			"type"   : "CT",
+		},
+
 		// ----------- SAT ----------- //
 		{
 			"day"    : "SAT",

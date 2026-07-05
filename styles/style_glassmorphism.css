@@ -234,13 +234,13 @@ tbody th.day-header-active {
 }
 
 
-td:has(.card-label-cse-1200)  {--subject-active-rgb: 211, 47, 47}
-td:has(.card-label-cse-1201)  {--subject-active-rgb: 255, 193, 7}
-td:has(.card-label-cse-1202)  {--subject-active-rgb: 3, 169, 244}
-td:has(.card-label-cse-1203)  {--subject-active-rgb: 76, 175, 80}
-td:has(.card-label-cse-1204)  {--subject-active-rgb: 233, 30, 99}
-td:has(.card-label-eee-1251)  {--subject-active-rgb: 0, 170, 156}
-td:has(.card-label-eee-1252)  {--subject-active-rgb: 0, 121, 107}
-td:has(.card-label-math-1213) {--subject-active-rgb: 63, 81, 181}
-td:has(.card-label-phy-1213)  {--subject-active-rgb: 255, 152, 0}
-td:has(.card-label-phy-1214)  {--subject-active-rgb: 156, 39, 176}
+td:has(.card-label-cse-2200)  {--subject-active-rgb: 211, 47, 47}
+td:has(.card-label-cse-2201)  {--subject-active-rgb: 255, 193, 7}
+td:has(.card-label-cse-2202)  {--subject-active-rgb: 3, 169, 244}
+td:has(.card-label-cse-2203)  {--subject-active-rgb: 76, 175, 80}
+td:has(.card-label-cse-2204)  {--subject-active-rgb: 233, 30, 99}
+td:has(.card-label-cse-2205)  {--subject-active-rgb: 0, 170, 156}
+td:has(.card-label-cse-2206)  {--subject-active-rgb: 0, 121, 107}
+td:has(.card-label-cse-2206-cse-2202) {--subject-active-rgb: 63, 81, 181}
+td:has(.card-label-hum-2213)  {--subject-active-rgb: 255, 152, 0}
+td:has(.card-label-math-2213)  {--subject-active-rgb: 156, 39, 176}
