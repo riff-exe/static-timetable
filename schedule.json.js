@@ -43,37 +43,39 @@ const config_json = {
 		 * "id"      : CSS ID for customization
 		 */
 
+
 		// ------- Class Tests ------- //
 		{
 			"day"    : "SAT",
 			"period" : 1,
-			"content": ["CSE 2205", "CT"],
+			"content": ["CSE 2205", "Even Week", "CT"],
 			"type"   : "CT",
 		},
 		{
 			"day"    : "SUN",
 			"period" : 1,
-			"content": ["Hum 2213", "CT"],
+			"content": ["Hum 2213", "Odd Week", "CT"],
 			"type"   : "CT",
 		},
 		{
 			"day"    : "MON",
 			"period" : 1,
-			"content": ["CSE 2203", "CT"],
+			"content": ["CSE 2203", "Even Week", "CT"],
 			"type"   : "CT",
 		},
 		{
 			"day"    : "TUE",
 			"period" : 1,
-			"content": ["Math 2213", "CT"],
+			"content": ["Math 2213", "Odd Week", "CT"],
 			"type"   : "CT",
 		},
 		{
 			"day"    : "WED",
 			"period" : 1,
-			"content": ["CSE 2201", "CT"],
+			"content": ["CSE 2201", "Even Week", "CT"],
 			"type"   : "CT",
 		},
+
 
 		// ----------- SAT ----------- //
 		{
@@ -127,6 +129,7 @@ const config_json = {
 			"length" : 2,
 		},
 
+
 		// ----------- MON ----------- //
 		{
 			"day"    : "MON",
@@ -145,6 +148,7 @@ const config_json = {
 			"type"   : "lab",
 			"length" : 2,
 		},
+
 
 		// ----------- TUE ----------- //
 		{
@@ -170,6 +174,7 @@ const config_json = {
 			"type"   : "lab",
 			"length" : 2,
 		},
+
 
 		// ----------- WED ----------- //
 		{

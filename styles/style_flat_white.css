@@ -58,9 +58,6 @@ body {
 .time-table td.card-type-free {
 	background-color: inherit;
 }
-.time-table td.card-type-ct {
-	font-weight: bold;
-}
 
 #error-container:empty { display: none; }
 #error-container {
