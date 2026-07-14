@@ -80,17 +80,6 @@ const config_json = {
 		// ----------- SAT ----------- //
 		{
 			"day"    : "SAT",
-			"period" : 4,
-			"content": ["CSE 2205", "SZM", "Seminar"],
-		},
-		{
-			"day"    : "SAT",
-			"period" : 5,
-			"content": ["CSE 2203", "SA", "Seminar"],
-			"length" : 2,
-		},
-		{
-			"day"    : "SAT",
 			"period" : 7,
 			"content": ["CSE 2204", "SA", "OS Lab"],
 			"desc"   : ["Odd week - ⬤", "Even week - ⬤ ⬤"],
@@ -99,11 +88,13 @@ const config_json = {
 			"length" : 2,
 		},
 
+
 		// ----------- SUN ----------- //
 		{
 			"day"    : "SUN",
-			"period" : 3,
+			"period" : 2,
 			"content": ["CSE 2205", "SZM", "202"],
+			"length" : 2,
 		},
 		{
 			"day"    : "SUN",
@@ -133,8 +124,14 @@ const config_json = {
 		// ----------- MON ----------- //
 		{
 			"day"    : "MON",
+			"period" : 2,
+			"content": ["CSE 2203", "SA", "Seminar"],
+			"length" : 2,
+		},
+		{
+			"day"    : "MON",
 			"period" : 4,
-			"content": ["CSE 2202", "KZN", "OS Lab", "⬤ ⬤"],
+			"content": ["CSE 2202", "KZN", "NW Lab", "⬤ ⬤"],
 			"classes": ["group-2nd-30"],
 			"type"   : "lab",
 			"length" : 3,
@@ -143,8 +140,6 @@ const config_json = {
 			"day"    : "MON",
 			"period" : 7,
 			"content": ["CSE 2200", "NIM", "101"],
-			"desc"   : ["Odd week - ⬤ ⬤", "Even week - ⬤"],
-			"classes": ["group-1st-30", "group-2nd-30"],
 			"type"   : "lab",
 			"length" : 2,
 		},
@@ -190,17 +185,17 @@ const config_json = {
 		{
 			"day"    : "WED",
 			"period" : 4,
-			"content": ["CSE 2201", "KZN", "102"],
-		},
-		{
-			"day"    : "WED",
-			"period" : 5,
 			"content": ["CSE 2205", "SZM", "102"],
 		},
 		{
 			"day"    : "WED",
-			"period" : 6,
+			"period" : 5,
 			"content": ["CSE 2203", "SA", "102"],
+		},
+		{
+			"day"    : "WED",
+			"period" : 6,
+			"content": ["CSE 2201", "KZN", "102"],
 		},
 
 	]
