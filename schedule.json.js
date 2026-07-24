@@ -80,6 +80,14 @@ const config_json = {
 		// ----------- SAT ----------- //
 		{
 			"day"    : "SAT",
+			"period" : 4,
+			"content": ["CSE 2206", "SZM", "NW Lab", "⬤ ⬤"],
+			"classes": ["group-2nd-30"],
+			"type"   : "lab",
+			"length" : 3,
+		},
+		{
+			"day"    : "SAT",
 			"period" : 7,
 			"content": ["CSE 2204", "SA", "OS Lab"],
 			"desc"   : ["Odd week - ⬤", "Even week - ⬤ ⬤"],
@@ -111,14 +119,6 @@ const config_json = {
 			"period" : 6,
 			"content": ["CSE 2201", "MIT/KZN", "202"],
 		},
-		{
-			"day"    : "SUN",
-			"period" : 7,
-			"content": ["CSE 2206", "SZM", "ACL Lab", "⬤"],
-			"classes": ["group-1st-30"],
-			"type"   : "lab",
-			"length" : 2,
-		},
 
 
 		// ----------- MON ----------- //
@@ -131,8 +131,8 @@ const config_json = {
 		{
 			"day"    : "MON",
 			"period" : 4,
-			"content": ["CSE 2202", "KZN", "NW Lab", "⬤ ⬤"],
-			"classes": ["group-2nd-30"],
+			"content": ["CSE 2206 / CSE 2202", "SZM / KZN", "PG Lab / OS Lab", "⬤ / ⬤ ⬤"],
+			"classes": ["group-1st-30", "group-2nd-30"],
 			"type"   : "lab",
 			"length" : 3,
 		},
@@ -148,6 +148,12 @@ const config_json = {
 		// ----------- TUE ----------- //
 		{
 			"day"    : "TUE",
+			"period" : 2,
+			"content": ["CSE 2201", "MIT/KZN", "Seminar"],
+			"length" : 2,
+		},
+		{
+			"day"    : "TUE",
 			"period" : 4,
 			"content": ["Hum 2213", "ABS", "103"],
 		},
@@ -158,14 +164,9 @@ const config_json = {
 		},
 		{
 			"day"    : "TUE",
-			"period" : 6,
-			"content": ["CSE 2201", "KZN", "103"],
-		},
-		{
-			"day"    : "TUE",
 			"period" : 7,
-			"content": ["CSE 2206 / CSE 2202", "SZM / MIT", "ACL Lab / NW Lab", "⬤ ⬤ / ⬤"],
-			"classes": ["group-1st-30", "group-2nd-30"],
+			"content": ["CSE 2202", "MIT", "NW Lab", "⬤"],
+			"classes": ["group-1st-30"],
 			"type"   : "lab",
 			"length" : 2,
 		},
@@ -191,11 +192,6 @@ const config_json = {
 			"day"    : "WED",
 			"period" : 5,
 			"content": ["CSE 2203", "SA", "102"],
-		},
-		{
-			"day"    : "WED",
-			"period" : 6,
-			"content": ["CSE 2201", "KZN", "102"],
 		},
 
 	]
