@@ -15,7 +15,8 @@ const config_json = {
 		{ "key": "LB" ,   "label":  "1:20",   "spanAll": "Lunch<br>Break" },
 		{ "key": 7    ,   "label":  "2:30" },
 		{ "key": 8    ,   "label":  "3:20" },
-		{ "key": "END",   "label":  "4:00",   "spanAll": "End" }
+		{ "key": 9    ,   "label":  "4:10" },
+		{ "key": "END",   "label":  "5:00",   "spanAll": "End" }
 	],
 
 	/*
@@ -93,7 +94,7 @@ const config_json = {
 			"desc"   : ["Odd week - ⬤", "Even week - ⬤ ⬤"],
 			"classes": ["group-1st-30", "group-2nd-30"],
 			"type"   : "lab",
-			"length" : 2,
+			"length" : 3,
 		},
 
 
@@ -119,6 +120,15 @@ const config_json = {
 			"period" : 6,
 			"content": ["CSE 2201", "MIT/KZN", "202"],
 		},
+			{
+			"day"    : "SUN",
+			"period" : 7,
+			"content": ["CSE 2206", "SZM", "PG Lab", "⬤"],
+			"classes": ["group-1st-30"],
+			"type"   : "lab",
+			"length" : 3,
+		},
+
 
 
 		// ----------- MON ----------- //
@@ -131,8 +141,8 @@ const config_json = {
 		{
 			"day"    : "MON",
 			"period" : 4,
-			"content": ["CSE 2206 / CSE 2202", "SZM / KZN", "PG Lab / OS Lab", "⬤ / ⬤ ⬤"],
-			"classes": ["group-1st-30", "group-2nd-30"],
+			"content": ["CSE 2202", "KZN", "OS Lab", "⬤ ⬤"],
+			"classes": ["group-2nd-30"],
 			"type"   : "lab",
 			"length" : 3,
 		},
@@ -141,7 +151,7 @@ const config_json = {
 			"period" : 7,
 			"content": ["CSE 2200", "NIM", "101"],
 			"type"   : "lab",
-			"length" : 2,
+			"length" : 3,
 		},
 
 
@@ -155,7 +165,7 @@ const config_json = {
 		{
 			"day"    : "TUE",
 			"period" : 4,
-			"content": ["Hum 2213", "ABS", "103"],
+			"content": ["Hum 2213", "SI", "103"],
 		},
 		{
 			"day"    : "TUE",
@@ -168,7 +178,7 @@ const config_json = {
 			"content": ["CSE 2202", "MIT", "NW Lab", "⬤"],
 			"classes": ["group-1st-30"],
 			"type"   : "lab",
-			"length" : 2,
+			"length" : 3,
 		},
 
 
@@ -176,7 +186,7 @@ const config_json = {
 		{
 			"day"    : "WED",
 			"period" : 2,
-			"content": ["Math 2213", "MRK", "102"],
+			"content": ["Math 2213", "MBH", "102"],
 		},
 		{
 			"day"    : "WED",
