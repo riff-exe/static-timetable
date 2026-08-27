@@ -102,8 +102,12 @@ const config_json = {
 		{
 			"day"    : "SUN",
 			"period" : 2,
+			"content": ["CSE 2203", "SA", "202"],
+		},
+		{
+			"day"    : "SUN",
+			"period" : 3,
 			"content": ["CSE 2205", "SZM", "202"],
-			"length" : 2,
 		},
 		{
 			"day"    : "SUN",
@@ -123,7 +127,7 @@ const config_json = {
 			{
 			"day"    : "SUN",
 			"period" : 7,
-			"content": ["CSE 2206", "SZM", "PG Lab", "⬤"],
+			"content": ["CSE 2206", "SZM", "ACL Lab", "⬤"],
 			"classes": ["group-1st-30"],
 			"type"   : "lab",
 			"length" : 3,
@@ -197,11 +201,7 @@ const config_json = {
 			"day"    : "WED",
 			"period" : 4,
 			"content": ["CSE 2205", "SZM", "102"],
-		},
-		{
-			"day"    : "WED",
-			"period" : 5,
-			"content": ["CSE 2203", "SA", "102"],
+			"length" : 2,
 		},
 
 	]
