@@ -89,6 +89,11 @@ const config_json = {
 		},
 		{
 			"day"    : "SAT",
+			"period" : 5,
+			"content": ["Math 2213", "MBH", "202"],
+		},
+		{
+			"day"    : "SAT",
 			"period" : 7,
 			"content": ["CSE 2204", "SA", "OS Lab"],
 			"desc"   : ["Odd week - ⬤", "Even week - ⬤ ⬤"],
@@ -186,11 +191,6 @@ const config_json = {
 			"day"    : "WED",
 			"period" : 1,
 			"content": ["CSE 2203", "SA", "102"],
-		},
-		{
-			"day"    : "WED",
-			"period" : 2,
-			"content": ["Math 2213", "MBH", "102"],
 		},
 		{
 			"day"    : "WED",
