@@ -101,13 +101,14 @@ const config_json = {
 		// ----------- SUN ----------- //
 		{
 			"day"    : "SUN",
-			"period" : 2,
-			"content": ["CSE 2205", "SZM", "202"],
+			"period" : 1,
+			"content": ["CSE 2201", "MIT/KZN", "202"],
+			"length" : 2,
 		},
 		{
 			"day"    : "SUN",
 			"period" : 3,
-			"content": ["CSE 2201", "MIT/KZN", "202"],
+			"content": ["CSE 2205", "SZM", "202"],
 		},
 		{
 			"day"    : "SUN",
@@ -157,19 +158,18 @@ const config_json = {
 		// ----------- TUE ----------- //
 		{
 			"day"    : "TUE",
-			"period" : 1,
-			"content": ["Hum 2213", "SI", "103"],
-		},
-		{
-			"day"    : "TUE",
 			"period" : 2,
 			"content": ["Math 2213", "MRK", "103"],
 		},
 		{
 			"day"    : "TUE",
 			"period" : 4,
+			"content": ["Hum 2213", "SI", "Seminar"],
+		},
+		{
+			"day"    : "TUE",
+			"period" : 5,
 			"content": ["CSE 2201", "MIT/KZN", "Seminar"],
-			"length" : 2,
 		},
 		{
 			"day"    : "TUE",
