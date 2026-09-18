@@ -48,31 +48,31 @@ const config_json = {
 		// ------- Class Tests ------- //
 		{
 			"day"    : "SAT",
-			"period" : 1,
+			"period" : 6,
 			"content": ["CSE 2205", "Even Week", "CT"],
 			"type"   : "CT",
 		},
 		{
 			"day"    : "SUN",
-			"period" : 1,
+			"period" : 6,
 			"content": ["Hum 2213", "Odd Week", "CT"],
 			"type"   : "CT",
 		},
 		{
 			"day"    : "MON",
-			"period" : 1,
+			"period" : 6,
 			"content": ["CSE 2203", "Even Week", "CT"],
 			"type"   : "CT",
 		},
 		{
 			"day"    : "TUE",
-			"period" : 1,
+			"period" : 6,
 			"content": ["Math 2213", "Odd Week", "CT"],
 			"type"   : "CT",
 		},
 		{
 			"day"    : "WED",
-			"period" : 1,
+			"period" : 6,
 			"content": ["CSE 2201", "Even Week", "CT"],
 			"type"   : "CT",
 		},
@@ -81,16 +81,11 @@ const config_json = {
 		// ----------- SAT ----------- //
 		{
 			"day"    : "SAT",
-			"period" : 4,
+			"period" : 1,
 			"content": ["CSE 2206", "SZM", "NW Lab", "⬤ ⬤"],
 			"classes": ["group-2nd-30"],
 			"type"   : "lab",
 			"length" : 3,
-		},
-		{
-			"day"    : "SAT",
-			"period" : 3,
-			"content": ["Math 2213", "MBH", "101"],
 		},
 		{
 			"day"    : "SAT",
@@ -107,12 +102,12 @@ const config_json = {
 		{
 			"day"    : "SUN",
 			"period" : 2,
-			"content": ["CSE 2203", "SA", "202"],
+			"content": ["CSE 2205", "SZM", "202"],
 		},
 		{
 			"day"    : "SUN",
 			"period" : 3,
-			"content": ["CSE 2205", "SZM", "202"],
+			"content": ["CSE 2201", "MIT/KZN", "202"],
 		},
 		{
 			"day"    : "SUN",
@@ -126,11 +121,6 @@ const config_json = {
 		},
 		{
 			"day"    : "SUN",
-			"period" : 6,
-			"content": ["CSE 2201", "MIT/KZN", "202"],
-		},
-			{
-			"day"    : "SUN",
 			"period" : 7,
 			"content": ["CSE 2206", "SZM", "ACL Lab", "⬤"],
 			"classes": ["group-1st-30"],
@@ -143,17 +133,17 @@ const config_json = {
 		// ----------- MON ----------- //
 		{
 			"day"    : "MON",
-			"period" : 2,
-			"content": ["CSE 2203", "SA", "Seminar"],
-			"length" : 2,
-		},
-		{
-			"day"    : "MON",
-			"period" : 4,
+			"period" : 1,
 			"content": ["CSE 2202", "KZN", "OS Lab", "⬤ ⬤"],
 			"classes": ["group-2nd-30"],
 			"type"   : "lab",
 			"length" : 3,
+		},
+		{
+			"day"    : "MON",
+			"period" : 4,
+			"content": ["CSE 2203", "SA", "Seminar"],
+			"length" : 2,
 		},
 		{
 			"day"    : "MON",
@@ -167,19 +157,19 @@ const config_json = {
 		// ----------- TUE ----------- //
 		{
 			"day"    : "TUE",
-			"period" : 2,
-			"content": ["CSE 2201", "MIT/KZN", "Seminar"],
-			"length" : 2,
-		},
-		{
-			"day"    : "TUE",
-			"period" : 4,
+			"period" : 1,
 			"content": ["Hum 2213", "SI", "103"],
 		},
 		{
 			"day"    : "TUE",
-			"period" : 5,
+			"period" : 2,
 			"content": ["Math 2213", "MRK", "103"],
+		},
+		{
+			"day"    : "TUE",
+			"period" : 4,
+			"content": ["CSE 2201", "MIT/KZN", "Seminar"],
+			"length" : 2,
 		},
 		{
 			"day"    : "TUE",
@@ -194,6 +184,16 @@ const config_json = {
 		// ----------- WED ----------- //
 		{
 			"day"    : "WED",
+			"period" : 1,
+			"content": ["CSE 2203", "SA", "102"],
+		},
+		{
+			"day"    : "WED",
+			"period" : 2,
+			"content": ["Math 2213", "MBH", "102"],
+		},
+		{
+			"day"    : "WED",
 			"period" : 3,
 			"content": ["Hum 2213", "SI", "102"],
 		},
@@ -203,7 +203,6 @@ const config_json = {
 			"content": ["CSE 2205", "SZM", "102"],
 			"length" : 2,
 		},
-
 	]
 }
 
