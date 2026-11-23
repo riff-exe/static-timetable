@@ -53,10 +53,14 @@ body {
 	font-family: var(--def-font);
 }
 .time-table tr td, th {
-	padding: 6px;
+	padding: 8px;
+	font-size: 16px;
 }
 .time-table td.card-type-free {
 	background-color: inherit;
+}
+.time-table td .card-desc {
+	font-size: 12px;
 }
 
 #error-container:empty { display: none; }

@@ -46,56 +46,29 @@ const config_json = {
 
 
 		// ------- Class Tests ------- //
-		{
-			"day"    : "SAT",
-			"period" : 6,
-			"content": ["CSE 2205", "Even Week", "CT"],
-			"type"   : "CT",
-		},
-		{
-			"day"    : "SUN",
-			"period" : 6,
-			"content": ["Hum 2213", "Odd Week", "CT"],
-			"type"   : "CT",
-		},
-		{
-			"day"    : "MON",
-			"period" : 6,
-			"content": ["CSE 2203", "Even Week", "CT"],
-			"type"   : "CT",
-		},
-		{
-			"day"    : "TUE",
-			"period" : 6,
-			"content": ["Math 2213", "Odd Week", "CT"],
-			"type"   : "CT",
-		},
-		{
-			"day"    : "WED",
-			"period" : 6,
-			"content": ["CSE 2201", "Even Week", "CT"],
-			"type"   : "CT",
-		},
 
 
 		// ----------- SAT ----------- //
 		{
 			"day"    : "SAT",
-			"period" : 1,
-			"content": ["CSE 2206", "SZM", "NW Lab", "⬤ ⬤"],
-			"classes": ["group-2nd-30"],
-			"type"   : "lab",
-			"length" : 3,
+			"period" : 2,
+			"content": ["CSE 3109", "NOS", "102"],
+			"length" : 2,
+		},
+		{
+			"day"    : "SAT",
+			"period" : 4,
+			"content": ["CSE 3105", "FAR/SIA", "202"],
 		},
 		{
 			"day"    : "SAT",
 			"period" : 5,
-			"content": ["Math 2213", "MBH", "202"],
+			"content": ["CSE 3107", "UD", "202"],
 		},
 		{
 			"day"    : "SAT",
 			"period" : 7,
-			"content": ["CSE 2204", "SA", "OS Lab"],
+			"content": ["CSE 3108", "UD", "HPCL Lab"],
 			"desc"   : ["Odd week - ⬤", "Even week - ⬤ ⬤"],
 			"classes": ["group-1st-30", "group-2nd-30"],
 			"type"   : "lab",
@@ -106,81 +79,63 @@ const config_json = {
 		// ----------- SUN ----------- //
 		{
 			"day"    : "SUN",
-			"period" : 1,
-			"content": ["CSE 2201", "MIT/KZN", "202"],
-			"length" : 2,
+			"period" : 2,
+			"content": ["CSE 3103", "KZN/SAM", "101"],
 		},
 		{
 			"day"    : "SUN",
 			"period" : 3,
-			"content": ["CSE 2205", "SZM", "202"],
-		},
-		{
-			"day"    : "SUN",
-			"period" : 4,
-			"content": ["Math 2213", "MBH", "202"],
-		},
-		{
-			"day"    : "SUN",
-			"period" : 5,
-			"content": ["Hum 2213", "ABS", "202"],
+			"content": ["CSE 3105", "FAR/SIA", "101"],
 		},
 		{
 			"day"    : "SUN",
 			"period" : 7,
-			"content": ["CSE 2206", "SZM", "ACL Lab", "⬤"],
-			"classes": ["group-1st-30"],
+			"content": ["CSE 3100"],
 			"type"   : "lab",
 			"length" : 3,
 		},
-
 
 
 		// ----------- MON ----------- //
 		{
 			"day"    : "MON",
-			"period" : 1,
-			"content": ["CSE 2202", "KZN", "OS Lab", "⬤ ⬤"],
-			"classes": ["group-2nd-30"],
-			"type"   : "lab",
-			"length" : 3,
+			"period" : 2,
+			"content": ["CSE 3105", "FAR/SIA", "Seminar"],
+		},
+		{
+			"day"    : "MON",
+			"period" : 3,
+			"content": ["CSE 3109", "NOS", "Seminar"],
 		},
 		{
 			"day"    : "MON",
 			"period" : 4,
-			"content": ["CSE 2203", "SA", "Seminar"],
+			"content": ["CSE 3101", "SeN/SZM", "102"],
 			"length" : 2,
 		},
 		{
 			"day"    : "MON",
 			"period" : 7,
-			"content": ["CSE 2200", "NIM", "101"],
-			"type"   : "lab",
-			"length" : 3,
+			"content": ["CSE 3107", "UD", "201"],
+			"length" : 2,
 		},
 
 
 		// ----------- TUE ----------- //
 		{
 			"day"    : "TUE",
-			"period" : 2,
-			"content": ["Math 2213", "MRK", "103"],
-		},
-		{
-			"day"    : "TUE",
-			"period" : 4,
-			"content": ["Hum 2213", "SI", "Seminar"],
-		},
-		{
-			"day"    : "TUE",
-			"period" : 5,
-			"content": ["CSE 2201", "MIT/KZN", "Seminar"],
+			"period" : 1,
+			"content": ["CSE 3102", "SeN/SZM", "PG Lab", "⬤ ⬤"],
+			"type"   : "lab",
+			"classes": ["group-2nd-30"],
+			"length" : 3,
 		},
 		{
 			"day"    : "TUE",
 			"period" : 7,
-			"content": ["CSE 2202", "MIT", "NW Lab", "⬤"],
-			"classes": ["group-1st-30"],
+			"content": ["CSE 3106", "FAR/SIA", "HW Lab"],
+			"desc"   : ["Odd week - ⬤ ⬤", "Even week - ⬤"],
+			"classes": ["group-1st-30", "group-2nd-30"],
 			"type"   : "lab",
 			"length" : 3,
 		},
@@ -190,18 +145,21 @@ const config_json = {
 		{
 			"day"    : "WED",
 			"period" : 1,
-			"content": ["CSE 2203", "SA", "102"],
+			"content": ["CSE 3103", "KZN/SAM", "202"],
+			"length" : 2,
 		},
 		{
 			"day"    : "WED",
 			"period" : 3,
-			"content": ["Hum 2213", "SI", "102"],
+			"content": ["CSE 3101", "SeN/SZM", "202"]
 		},
 		{
 			"day"    : "WED",
-			"period" : 4,
-			"content": ["CSE 2205", "SZM", "102"],
-			"length" : 2,
+			"period" : 7,
+			"content": ["CSE 3102", "SeN/SZM", "OS Lab", "⬤"],
+			"classes": ["group-1st-30"],
+			"type"   : "lab",
+			"length" : 3,
 		},
 	]
 }
