@@ -46,6 +46,38 @@ const config_json = {
 
 
 		// ------- Class Tests ------- //
+		/*
+		{
+			"day"    : "SAT",
+			"period" : 6,
+			"content": ["CSE 3101", "Even Week", "CT"],
+			"type"   : "CT",
+		},
+		{
+			"day"    : "SUN",
+			"period" : 6,
+			"content": ["CSE 3103", "Odd Week", "CT"],
+			"type"   : "CT",
+		},
+		{
+			"day"    : "MON",
+			"period" : 6,
+			"content": ["CSE 3105", "Even Week", "CT"],
+			"type"   : "CT",
+		},
+		{
+			"day"    : "TUE",
+			"period" : 6,
+			"content": ["CSE 3107", "Odd Week", "CT"],
+			"type"   : "CT",
+		},
+		{
+			"day"    : "WED",
+			"period" : 6,
+			"content": ["CSE 3109", "Even Week", "CT"],
+			"type"   : "CT",
+		},
+		*/
 
 
 		// ----------- SAT ----------- //
@@ -125,9 +157,9 @@ const config_json = {
 		{
 			"day"    : "TUE",
 			"period" : 1,
-			"content": ["CSE 3102", "SeN/SZM", "PG Lab", "⬤ ⬤"],
+			"content": ["CSE 3102", "SeN/SZM", "PG Lab", "⬤"],
+			"classes": ["group-1st-30"],
 			"type"   : "lab",
-			"classes": ["group-2nd-30"],
 			"length" : 3,
 		},
 		{
@@ -156,8 +188,8 @@ const config_json = {
 		{
 			"day"    : "WED",
 			"period" : 7,
-			"content": ["CSE 3102", "SeN/SZM", "OS Lab", "⬤"],
-			"classes": ["group-1st-30"],
+			"content": ["CSE 3102", "SeN/SZM", "OS Lab", "⬤ ⬤"],
+			"classes": ["group-2nd-30"],
 			"type"   : "lab",
 			"length" : 3,
 		},
